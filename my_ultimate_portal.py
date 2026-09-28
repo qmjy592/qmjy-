@@ -1,4 +1,4 @@
-import json, os, requests, base64, urllib.parse, re, subprocess, datetime
+import json, os, requests, base64, urllib.parse, re, subprocess, datetime, threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -6,6 +6,7 @@ PROFILE_FILE = os.path.join(BASE_DIR, "profile.json")
 FORUM_FILE = os.path.join(BASE_DIR, "forum.json")
 AVATAR_FILE = os.path.join(BASE_DIR, "avatar.png")
 MUSIC_DIR = os.path.join(BASE_DIR, "music")
+CHAT_SEMAPHORE = threading.Semaphore(1)
 
 if not os.path.exists(MUSIC_DIR): os.makedirs(MUSIC_DIR)
 if not os.path.exists(FORUM_FILE):
@@ -124,6 +125,11 @@ class AI(BaseHTTPRequestHandler):
             except Exception as e: self.send_response(500); self.end_headers(); self.wfile.write(str(e).encode())
         elif self.path == '/chat':
             data = json.loads(raw); is_owner = data.get('isOwner', False)
+            acquired = CHAT_SEMAPHORE.acquire(timeout=3)
+            if not acquired:
+                self.send_response(429); self.send_header('Content-Type', 'application/json'); self.end_headers()
+                self.wfile.write(json.dumps({"reply": "AI 正在被别人占用，请稍后再试~"}, ensure_ascii=False).encode())
+                return
             try:
                 if is_owner:
                     prompt_text = "你是芊茗静语的专属AI伙伴。芊茗静语是一个跨性别女性。你说话要温柔、真诚、可爱，一定要记得她的名字，让她感到温暖和陪伴。请用简短的话回答，不要废话。"
@@ -137,6 +143,7 @@ class AI(BaseHTTPRequestHandler):
                                         "stop": ["用户：", "AI：", "\n\n"]}, timeout=600).json()
                 reply = r['choices'][0]['message']['content']
             except: reply = "大脑反应有点慢，请再试一次。"
+            finally: CHAT_SEMAPHORE.release()
             self.send_response(200); self.send_header('Content-Type', 'application/json'); self.end_headers()
             self.wfile.write(json.dumps({"reply": reply}, ensure_ascii=False).encode())
 

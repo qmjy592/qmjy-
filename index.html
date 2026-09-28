@@ -199,7 +199,7 @@
       </div>
     </div>
   </div>
-  <!-- 底部悬浮音乐状态栏（可收纳，可切歌，带播放列表） -->
+  <!-- 底部悬浮音乐状态栏（可收纳，可切歌，带播放模式切换，带播放列表） -->
   <div class="player-bar hidden" id="player-bar" onclick="togglePlayerCollapse()">
     <audio id="global-audio" onended="handleSongEnd()"></audio>
     <div class="music-cover">🎵</div>
@@ -210,6 +210,7 @@
     <button onclick="event.stopPropagation(); playPrevious()" title="上一首">⏮</button>
     <button onclick="event.stopPropagation(); togglePlay()" id="play-btn">▶</button>
     <button onclick="event.stopPropagation(); playNext()" title="下一首">⏭</button>
+    <button onclick="event.stopPropagation(); togglePlayMode()" id="play-mode-btn" title="列表循环">🔁</button>
     <div class="progress-container" onclick="event.stopPropagation(); seekAudio(event)"><div class="progress-fill" id="progress-fill"></div></div>
     <div class="time-display" id="time-display">0:00 / 0:00</div>
     <button onclick="event.stopPropagation(); togglePlaylist()" title="播放列表" style="font-size: 16px;">≡</button>
