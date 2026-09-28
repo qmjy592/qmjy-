@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>✨ 芊茗静语的专属空间 ✨</title>
+<style>
+  :root { --bg-gradient: linear-gradient(135deg, #5BCEFA 0%, #F5A9B8 35%, #FFFFFF 50%, #F5A9B8 65%, #5BCEFA 100%); --glass-bg: rgba(255, 255, 255, 0.35); --text-main: #1a1a1a; --text-muted: #4a5568; --accent: #f5a9b8; --accent-blue: #5bcefa; --border-color: rgba(255, 255, 255, 0.8); --radius: 24px; }
+  body.dark-mode { --bg-gradient: linear-gradient(135deg, #2d0a3e 0%, #4a154b 35%, #1a0b2e 50%, #4a154b 65%, #2d0a3e 100%); --glass-bg: rgba(45, 20, 80, 0.6); --text-main: #f3f4f6; --text-muted: #d4a5ff; --accent: #c44dff; --accent-blue: #4ecdc4; --border-color: rgba(212, 165, 255, 0.4); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); font-family: -apple-system, "PingFang SC", "HarmonyOS Sans", system-ui, sans-serif; transition: background 0.5s, color 0.3s; padding-top: 155px; min-height: 100vh; overflow-x: hidden; font-size: 16px; line-height: 1.6; }
+  .petal { position: fixed; top: -10px; background: linear-gradient(135deg, #fff, #ffb7c5); border-radius: 50% 0 50% 50%; transform: rotate(45deg); opacity: 0.7; animation: fall linear infinite; z-index: 1; pointer-events: none; }
+  @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
+  .glow-orb { position: fixed; border-radius: 50%; filter: blur(40px); opacity: 0.4; z-index: 0; pointer-events: none; animation: float 10s infinite ease-in-out alternate; }
+  .orb1 { width: 250px; height: 250px; background: #5BCEFA; top: 5%; left: -10%; }
+  .orb2 { width: 300px; height: 300px; background: #F5A9B8; bottom: 10%; right: -10%; animation-delay: -3s; }
+  @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, -30px); } }
+  .nav-bar { position: fixed; top: 75px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 900px; border-radius: 30px; padding: 8px 16px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--border-color); z-index: 1000; display: flex; justify-content: center; align-items: center; gap: 6px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+  .nav-bar button { padding: 8px 16px; border-radius: 20px; border: none; background: transparent; color: var(--text-main); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .nav-bar button:hover { background: rgba(255,255,255,0.3); }
+  body.dark-mode .nav-bar button:hover { background: rgba(255,255,255,0.1); }
+  .nav-bar button.active { color: #fff; background: linear-gradient(135deg, var(--accent-blue), var(--accent)); box-shadow: 0 4px 10px rgba(245, 169, 184, 0.4); }
+  .nav-bar .settings-btn { border-radius: 50%; width: 38px; height: 38px; padding: 0; display: flex; justify-content: center; align-items: center; margin-left: auto; font-size: 1.2rem; background: rgba(255,255,255,0.2); border: 1px solid var(--border-color); }
+  body.dark-mode .nav-bar .settings-btn { background: rgba(255,255,255,0.05); }
+  .container { max-width: 800px; margin: 0 auto; padding: 20px 16px 120px 16px; position: relative; z-index: 10; }
+  .page { display: none; animation: fadeIn 0.4s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .profile-card, .section-card, .stat-box { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: var(--radius); border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(255,255,255,0.5); transition: all 0.3s; }
+  body.dark-mode .profile-card, body.dark-mode .section-card, body.dark-mode .stat-box { box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.1); }
+  .profile-card { padding: 30px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .profile-card .avatar { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #5BCEFA, #F5A9B8); padding: 4px; margin-bottom: 20px; cursor: pointer; transition: transform 0.3s; }
+  .profile-card .avatar:hover { transform: scale(1.05); }
+  .profile-card .avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #fff; }
+  .profile-card h1 { font-size: 2rem; font-weight: 800; margin-bottom: 5px; background: linear-gradient(135deg, #5BCEFA, #F5A9B8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .profile-card .subtitle { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+  .profile-card .motto { font-size: 0.95rem; color: var(--text-muted); font-style: italic; margin-bottom: 15px; }
+  .profile-card .info-badge { font-size: 0.8rem; padding: 6px 12px; border-radius: 20px; background: rgba(91, 206, 250, 0.2); color: var(--accent-blue); font-weight: bold; display: inline-block; margin-bottom: 15px; }
+  .edit-btn { padding: 10px 24px; border: none; border-radius: 20px; background: linear-gradient(135deg, #5BCEFA, #F5A9B8); color: #fff; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(245, 169, 184, 0.4); transition: 0.3s; }
+  .edit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245, 169, 184, 0.6); }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+  .stat-box { padding: 20px; text-align: center; }
+  .stat-box .num { font-size: 1.6rem; font-weight: 900; color: var(--accent); }
+  .stat-box .label { font-size: 0.8rem; color: var(--text-muted); margin-top: 5px; font-weight: bold; }
+  .section-card { padding: 25px; margin-bottom: 20px; }
+  .section-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+  .social-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+  .social-item { display: flex; align-items: center; gap: 12px; padding: 15px; border-radius: 16px; background: rgba(255,255,255,0.2); text-decoration: none; color: var(--text-main); transition: 0.2s; }
+  .social-item:hover { background: rgba(255,255,255,0.4); transform: translateY(-2px); }
+  body.dark-mode .social-item { background: rgba(255,255,255,0.05); }
+  body.dark-mode .social-item:hover { background: rgba(255,255,255,0.1); }
+  .social-item .icon { font-size: 1.2rem; }
+  .social-item .info { display: flex; flex-direction: column; overflow: hidden; }
+  .social-item .info span:first-child { font-size: 0.8rem; color: var(--text-muted); }
+  .social-item .info span:last-child { font-weight: bold; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  textarea, input[type="text"], input[type="date"], select { width: 100%; padding: 14px; border-radius: 16px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.2); color: var(--text-main); margin-bottom: 12px; outline: none; font-size: 0.95rem; transition: border 0.3s; font-family: inherit; }
+  textarea:focus, input:focus, select:focus { border-color: var(--accent); background: rgba(255,255,255,0.4); }
+  body.dark-mode textarea, body.dark-mode input { background: rgba(0,0,0,0.2); }
+  .post-btn, .action-btn { width: 100%; padding: 15px; border: none; border-radius: 16px; background: linear-gradient(135deg, var(--accent-blue), var(--accent)); color: #fff; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(245, 169, 184, 0.3); }
+  .post-btn:hover, .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245, 169, 184, 0.5); }
+  .post-item { padding: 15px; border-radius: 16px; background: rgba(255,255,255,0.2); margin-bottom: 12px; border: 1px solid var(--border-color); }
+  body.dark-mode .post-item { background: rgba(0,0,0,0.2); }
+  .post-item small { color: var(--text-muted); font-size: 0.75rem; display: block; margin-bottom: 5px; }
+  #chat-box { height: 45vh; overflow-y: auto; padding: 10px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 80%; padding: 12px 18px; border-radius: 20px; font-size: 0.95rem; line-height: 1.6; animation: fadeIn 0.3s; word-break: break-all; }
+  .msg.user { align-self: flex-end; background: linear-gradient(135deg, #5BCEFA, #F5A9B8); color: #fff; border-bottom-right-radius: 4px; }
+  .msg.ai { align-self: flex-start; background: rgba(255,255,255,0.6); color: var(--text-main); border-bottom-left-radius: 4px; }
+  body.dark-mode .msg.ai { background: rgba(255,255,255,0.1); }
+  .chat-input-group { display: flex; gap: 10px; }
+  .song-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 16px; background: rgba(255,255,255,0.2); margin-bottom: 10px; border: 1px solid var(--border-color); }
+  body.dark-mode .song-item { background: rgba(0,0,0,0.2); }
+  .song-item button { padding: 8px 18px; border: none; border-radius: 20px; background: var(--accent); color: #fff; font-weight: bold; cursor: pointer; font-size: 0.85rem; }
+  .player-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 600px; background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 30px; padding: 12px 16px; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 1000; border: 1px solid var(--border-color); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .player-bar.hidden { bottom: -150px; }
+  .player-bar.collapsed { width: 55px; padding: 10px; justify-content: center; cursor: pointer; border-radius: 50%; bottom: 30px; left: auto; right: 25px; transform: none; }
+  .player-bar.collapsed > *:not(#toggle-collapse-btn) { display: none; }
+  .player-bar audio { display: none; }
+  .player-bar button { background: var(--glass-bg); border: none; border-radius: 50%; width: 34px; height: 34px; font-size: 14px; cursor: pointer; color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid var(--border-color); }
+  .player-bar .music-cover { width: 42px; height: 42px; border-radius: 10px; background: linear-gradient(135deg, #5BCEFA, #F5A9B8); display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; flex-shrink: 0; }
+  .player-bar .song-info { display: flex; flex-direction: column; overflow: hidden; max-width: 90px; }
+  .player-bar .song-info span:first-child { font-weight: bold; font-size: 0.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .player-bar .song-info span:last-child { font-size: 0.65rem; color: var(--text-muted); }
+  .progress-container { flex: 1; height: 6px; background: rgba(0,0,0,0.1); border-radius: 10px; cursor: pointer; position: relative; overflow: hidden; min-width: 40px; }
+  body.dark-mode .progress-container { background: rgba(255,255,255,0.1); }
+  .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #5BCEFA, #F5A9B8); border-radius: 10px; transition: width 0.1s; }
+  .time-display { font-size: 0.65rem; color: var(--text-muted); font-weight: bold; min-width: 60px; text-align: center; }
+  #toggle-collapse-btn { background: linear-gradient(135deg, #5BCEFA, #F5A9B8); color: #fff; border: none; box-shadow: 0 4px 10px rgba(245,169,184,0.4); }
+  .playlist-modal { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%) translateY(20px); width: 95%; max-width: 600px; max-height: 50vh; background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-radius: 20px; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 1001; display: none; flex-direction: column; overflow: hidden; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .playlist-modal.show { display: flex; transform: translateX(-50%) translateY(0); }
+  .playlist-header { padding: 15px 20px; border-bottom: 1px solid var(--border-color); font-weight: bold; font-size: 1rem; display: flex; justify-content: space-between; align-items: center; }
+  .playlist-header button { background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; }
+  .playlist-content { flex: 1; overflow-y: auto; padding: 10px; }
+  .playlist-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; border-radius: 12px; margin-bottom: 8px; transition: background 0.2s; cursor: pointer; }
+  .playlist-item:hover { background: rgba(255,255,255,0.2); }
+  body.dark-mode .playlist-item:hover { background: rgba(255,255,255,0.05); }
+  .playlist-item.active { background: linear-gradient(135deg, rgba(91,206,250,0.2), rgba(245,169,184,0.2)); border: 1px solid var(--accent); }
+  .playlist-item .p-title { font-size: 0.9rem; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .playlist-item .p-index { font-size: 0.8rem; color: var(--text-muted); width: 25px; text-align: center; flex-shrink: 0; }
+  .settings-drawer { position: fixed; top: 0; right: -360px; width: 320px; height: 100%; background: var(--glass-bg); backdrop-filter: blur(20px); z-index: 2000; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 25px; overflow-y: auto; border-left: 1px solid var(--border-color); }
+  .settings-drawer.open { right: 0; }
+  .settings-drawer h3 { margin-bottom: 25px; text-align: center; color: var(--accent); font-size: 1.2rem; }
+  .setting-group { margin-bottom: 20px; }
+  .setting-group label { display: block; margin: 10px 0 6px; font-size: 0.85rem; font-weight: bold; color: var(--text-muted); }
+  .setting-group input[type="range"] { width: 100%; accent-color: var(--accent); }
+  .lang-btns { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; }
+  .lang-btns button { padding: 6px 12px; border-radius: 12px; border: 1px solid var(--border-color); background: transparent; color: var(--text-muted); cursor: pointer; font-size: 0.8rem; }
+  .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+  .modal-content { background: var(--glass-bg); backdrop-filter: blur(20px); padding: 25px; border-radius: var(--radius); width: 90%; max-width: 480px; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid var(--border-color); }
+  .modal-content h3 { text-align: center; margin-bottom: 20px; color: var(--accent); }
+  .modal-content label { display: block; margin-bottom: 6px; font-size: 0.85rem; font-weight: bold; color: var(--text-muted); }
+  .modal-btns { display: flex; gap: 10px; margin-top: 20px; }
+  .modal-btns button { flex: 1; padding: 12px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; }
+  .modal-btns .save { background: linear-gradient(135deg, #5BCEFA, #F5A9B8); color: #fff; }
+  .modal-btns .cancel { background: rgba(0,0,0,0.05); color: var(--text-main); }
+  body.dark-mode .modal-btns .cancel { background: rgba(255,255,255,0.1); }
+  .toast { position: fixed; top: 80px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #F5A9B8, #d4a5ff); color: #fff; padding: 12px 24px; border-radius: 20px; font-weight: bold; z-index: 9999; display: none; box-shadow: 0 10px 30px rgba(245, 169, 184, 0.4); text-align: center; font-size: 0.9rem; }
+  #topLeftTime { position: fixed; top: 20px; left: 15px; padding: 6px 12px; font-size: 13px; font-weight: bold; z-index: 2000; background: linear-gradient(135deg, #ff9a9e, #fecfef, #ff9a9e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-radius: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.5); white-space: nowrap; }
+  body.dark-mode #topLeftTime { background: linear-gradient(135deg, #c44dff, #ff9a9e, #c44dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border: 1px solid rgba(255,255,255,0.1); }
+  @media (min-width: 769px) { .container { max-width: 1100px; } .profile-card { flex-direction: row; align-items: flex-start; text-align: left; gap: 40px; padding: 40px; } .profile-card .avatar { margin-bottom: 0; width: 150px; height: 150px; } .profile-card .info-wrapper { display: flex; flex-direction: column; flex: 1; } .profile-card h1 { font-size: 2.5rem; } .stats-grid { grid-template-columns: repeat(3, 1fr); } .social-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 600px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } .profile-card h1 { font-size: 1.6rem; } .nav-bar { gap: 4px; padding: 6px 10px; } .nav-bar button { padding: 6px 12px; font-size: 0.85rem; } }
+</style>
+</head>
+<body onload="initPage()">
+  <div id="petal-container"></div>
+  <div class="glow-orb orb1"></div>
+  <div class="glow-orb orb2"></div>
+  <div id="topLeftTime">--/-- --:--:--</div>
+  <div id="toast"></div>
+  <div class="nav-bar">
+    <button onclick="switchPage('home')" class="active" id="nav-home">首页</button>
+    <button onclick="switchPage('forum')" id="nav-forum">小论坛</button>
+    <button onclick="switchPage('ai')" id="nav-ai">AI陪伴</button>
+    <button onclick="switchPage('music')" id="nav-music">音乐盒</button>
+    <button onclick="switchPage('accounts')" id="nav-accounts">媒体账号</button>
+    <button class="settings-btn" onclick="toggleSettingsDrawer()">⚙️</button>
+  </div>
+  <div class="container">
+    <div id="home" class="page active">
+      <div class="profile-card">
+        <input type="file" id="avatar-input" accept="image/*" onchange="uploadAvatar(event)" style="display:none;">
+        <div class="avatar" onclick="requestEditAvatar()"><img id="home-avatar-img" src="" alt=""></div>
+        <div class="info-wrapper">
+          <h1 id="p-name">芊茗静语</h1>
+          <div class="subtitle" id="p-jp">せんめいせいご</div>
+          <div class="info-badge">🏳️‍⚧️ 跨性别女性 · INFP · HRT</div>
+          <div class="motto" id="p-motto">"我们活着，就是对恶意最大的反抗！"</div>
+          <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:15px;" id="p-details">中文名：卢清茗 · 现居地：广西南宁市兴宁区</div>
+          <button class="edit-btn" onclick="openProfileModal()">✏️ 修改个人资料</button>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="num" id="stat-days">--</div><div class="label">Days</div></div>
+        <div class="stat-box"><div class="num" id="stat-posts">--</div><div class="label">Posts</div></div>
+        <div class="stat-box"><div class="num" id="stat-songs">--</div><div class="label">Songs</div></div>
+      </div>
+      <div class="section-card"><h3>📜 个人经历</h3><div id="p-exp" style="font-size:0.95rem; color:var(--text-muted); line-height:1.8;">暂无记录...</div></div>
+      <div class="section-card"><h3>💊 HRT用药记录</h3><div id="p-hrt" style="font-size:0.95rem; color:var(--text-muted); line-height:1.8;">暂无记录...</div></div>
+    </div>
+    <div id="forum" class="page">
+      <div class="section-card">
+        <h3>💬 小论坛</h3>
+        <textarea id="post-content" rows="3" placeholder="写下你此刻的心情..."></textarea>
+        <button class="post-btn" onclick="submitPost()">发布帖子</button>
+        <div id="post-list" style="margin-top:20px;"></div>
+      </div>
+    </div>
+    <div id="ai" class="page">
+      <div class="section-card">
+        <h3>🤖 AI 伴侣</h3>
+        <div style="text-align:center; margin-bottom:15px;">
+          <span id="ai-mode-label" style="font-size:0.85rem; font-weight:bold; color:var(--text-muted);">当前：访客模式</span>
+          <button onclick="toggleOwnerMode()" style="margin-left:10px; padding:6px 12px; border:none; border-radius:12px; background:var(--accent); color:#fff; cursor:pointer; font-weight:bold; font-size:0.8rem;">👑 主人切换</button>
+        </div>
+        <div style="text-align:center; margin-bottom:15px;">
+          <button onclick="startAI()" id="start-ai-btn" style="padding:10px 20px; border:none; border-radius:16px; background:linear-gradient(135deg, #5BCEFA, #4facfe); color:#fff; font-weight:bold; cursor:pointer; box-shadow:0 4px 15px rgba(91,206,250,0.3);">🚀 一键启动AI大脑</button>
+        </div>
+        <div id="chat-box"></div>
+        <div class="chat-input-group">
+          <input type="text" id="user-input" placeholder="和静语AI聊聊..." onkeydown="if(event.key==='Enter') sendChat()">
+          <button onclick="sendChat()" id="send-btn" class="action-btn" style="width:auto; padding:0 20px;">发送</button>
+        </div>
+      </div>
+    </div>
+    <div id="music" class="page">
+      <div class="section-card">
+        <h3>🎵 静语的音乐盒</h3>
+        <div style="text-align:center; margin-bottom:15px;">
+          <input type="file" id="music-upload" accept="audio/*" multiple onchange="uploadMusic(event)" style="display:none;">
+          <button onclick="document.getElementById('music-upload').click()" class="action-btn" style="padding:10px 20px; font-size:0.9rem;">📁 上传本地音乐</button>
+        </div>
+        <div id="music-list"></div>
+      </div>
+    </div>
+    <div id="accounts" class="page">
+      <div class="section-card">
+        <h3>🔗 我的媒体账号</h3>
+        <div id="social-links" class="social-grid"></div>
+        <button class="action-btn" style="margin-top:20px;" onclick="openAccountsModal()">✏️ 修改媒体账号</button>
+      </div>
+    </div>
+  </div>
+  <!-- 底部悬浮音乐状态栏（可收纳，可切歌，带播放列表） -->
+  <div class="player-bar hidden" id="player-bar" onclick="togglePlayerCollapse()">
+    <audio id="global-audio" onended="handleSongEnd()"></audio>
+    <div class="music-cover">🎵</div>
+    <div class="song-info">
+      <span id="player-song-name">未播放</span>
+      <span>静语的音乐盒</span>
+    </div>
+    <button onclick="event.stopPropagation(); playPrevious()" title="上一首">⏮</button>
+    <button onclick="event.stopPropagation(); togglePlay()" id="play-btn">▶</button>
+    <button onclick="event.stopPropagation(); playNext()" title="下一首">⏭</button>
+    <div class="progress-container" onclick="event.stopPropagation(); seekAudio(event)"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="time-display" id="time-display">0:00 / 0:00</div>
+    <button onclick="event.stopPropagation(); togglePlaylist()" title="播放列表" style="font-size: 16px;">≡</button>
+    <button id="toggle-collapse-btn" onclick="event.stopPropagation(); togglePlayerCollapse()">➖</button>
+  </div>
+  <!-- 播放列表弹窗 -->
+  <div class="playlist-modal" id="playlist-modal" onclick="event.stopPropagation()">
+    <div class="playlist-header">
+      <span>本喵的音乐盒，敬请聆听</span>
+      <button onclick="togglePlaylist()">✕</button>
+    </div>
+    <div class="playlist-content" id="playlist-content">
+      <p style="text-align:center; color:var(--text-muted); padding:20px;">暂无音乐，快去上传吧！</p>
+    </div>
+  </div>
+  <div class="settings-drawer" id="settings-drawer">
+    <h3>⚙️ 画面设置</h3>
+    <div class="lang-btns">
+      <button onclick="changeLanguage('zh')">中文</button>
+      <button onclick="changeLanguage('en')">English</button>
+      <button onclick="changeLanguage('jp')">日本語</button>
+    </div>
+    <div class="setting-group"><label>亮度</label><input type="range" id="setting-brightness" min="0.5" max="1.5" step="0.1" value="1" oninput="applySettings()"></div>
+    <div class="setting-group"><label>对比度</label><input type="range" id="setting-contrast" min="0.5" max="1.5" step="0.1" value="1" oninput="applySettings()"></div>
+    <div class="setting-group"><label>饱和度</label><input type="range" id="setting-saturate" min="0" max="2" step="0.1" value="1" oninput="applySettings()"></div>
+    <div class="setting-group"><label>磨砂模糊度</label><input type="range" id="setting-blur" min="0" max="40" step="1" value="10" oninput="applySettings()"></div>
+    <div class="setting-group"><label>卡片圆角</label><input type="range" id="setting-radius" min="0" max="50" step="1" value="24" oninput="applySettings()"></div>
+    <div class="setting-group"><label>字体大小</label><input type="range" id="setting-font-size" min="12" max="24" step="1" value="16" oninput="applySettings()"></div>
+    <div class="setting-group"><label>字体行高</label><input type="range" id="setting-line-height" min="1.2" max="2.5" step="0.1" value="1.6" oninput="applySettings()"></div>
+    <button class="action-btn" style="margin-top:10px;" onclick="toggleDarkMode()">切换夜间模式</button>
+    <button class="action-btn" style="margin-top:10px; background:rgba(255,255,255,0.2); color:var(--text-main); box-shadow:none;" onclick="toggleSettingsDrawer()">关闭设置</button>
+  </div>
+  <div class="modal" id="profile-modal">
+    <div class="modal-content">
+      <h3>✏️ 修改个人资料</h3>
+      <label>昵称</label><input type="text" id="edit-nickname">
+      <label>中文名</label><input type="text" id="edit-cn">
+      <label>日文名</label><input type="text" id="edit-jp">
+      <label>性别</label><select id="edit-gender" onchange="toggleCustomGender()"><option value="女">女</option><option value="男">男</option><option value="其他">其他</option></select>
+      <input type="text" id="edit-gender-custom" placeholder="自定义性别" style="display:none;">
+      <label>出生年月日</label><input type="date" id="edit-birth">
+      <label>MBTI</label><input type="text" id="edit-mbti">
+      <label>现居地</label><input type="text" id="edit-location">
+      <label>个性签名</label><textarea id="edit-motto" rows="2"></textarea>
+      <label>个人经历</label><textarea id="edit-exp" rows="3"></textarea>
+      <label>HRT用药记录</label><textarea id="edit-hrt" rows="3"></textarea>
+      <div class="modal-btns">
+        <button class="save" onclick="saveProfile()" id="save-profile-btn">保存</button>
+        <button class="cancel" onclick="closeProfileModal()">取消</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="accounts-modal">
+    <div class="modal-content">
+      <h3>✏️ 修改媒体账号</h3>
+      <label>哔哩哔哩</label><input type="text" id="edit-bilibili">
+      <label>Twitter</label><input type="text" id="edit-twitter">
+      <label>Google</label><input type="text" id="edit-google">
+      <label>其他</label><input type="text" id="edit-other">
+      <div class="modal-btns">
+        <button class="save" onclick="saveAccounts()" id="save-accounts-btn">保存</button>
+        <button class="cancel" onclick="closeAccountsModal()">取消</button>
+      </div>
+    </div>
+  </div>
+  <script>
+  let currentPage = 'home'; let playMode = 'list-loop'; let currentSongIndex = -1; let currentPlaylist = []; let isSendingChat = false; let isSaving = false;
+  const translations = { zh: { nav_home: "首页", nav_forum: "小论坛", nav_ai: "AI陪伴", nav_music: "音乐盒", nav_accounts: "媒体账号" }, en: { nav_home: "Home", nav_forum: "Forum", nav_ai: "AI Chat", nav_music: "Music", nav_accounts: "Media" }, jp: { nav_home: "ホーム", nav_forum: "フォーラム", nav_ai: "AIチャット", nav_music: "ミュージック", nav_accounts: "メディア" } };
+  function showToast(msg) { const toast = document.getElementById('toast'); toast.innerText = msg; toast.style.display = 'block'; setTimeout(() => { toast.style.display = 'none'; }, 2500); }
+  function changeLanguage(lang) { document.getElementById('nav-home').innerText = translations[lang].nav_home; document.getElementById('nav-forum').innerText = translations[lang].nav_forum; document.getElementById('nav-ai').innerText = translations[lang].nav_ai; document.getElementById('nav-music').innerText = translations[lang].nav_music; document.getElementById('nav-accounts').innerText = translations[lang].nav_accounts; }
+  function updateLocalTime() { const now = new Date(); const dateStr = now.toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' }); const timeStr = now.toLocaleTimeString('zh-CN', { hour12: false }); const timeDiv = document.getElementById('topLeftTime'); if (timeDiv) timeDiv.textContent = dateStr + ' ' + timeStr; }
+  setInterval(updateLocalTime, 1000); updateLocalTime();
+  function createPetals() { const container = document.getElementById('petal-container'); for (let i = 0; i < 8; i++) { const petal = document.createElement('div'); petal.className = 'petal'; const size = Math.random() * 12 + 6; petal.style.width = size + 'px'; petal.style.height = size + 'px'; petal.style.left = Math.random() * 100 + 'vw'; petal.style.animationDuration = (Math.random() * 6 + 6) + 's'; petal.style.animationDelay = Math.random() * 6 + 's'; container.appendChild(petal); } }
+  function switchPage(pageId) { document.querySelectorAll('.page').forEach(e => e.classList.remove('active')); document.querySelectorAll('.nav-bar button').forEach(e => e.classList.remove('active')); document.getElementById(pageId).classList.add('active'); document.getElementById('nav-' + pageId).classList.add('active'); currentPage = pageId; if(pageId === 'music') loadMusicList(); if(pageId === 'forum') loadPosts(); if(pageId === 'accounts') loadProfile(); if(pageId === 'ai') updateAiModeUI(); }
+  function toggleDarkMode() { document.body.classList.toggle('dark-mode'); }
+  function toggleSettingsDrawer() { document.getElementById('settings-drawer').classList.toggle('open'); }
+  function applySettings() { const brightness = document.getElementById('setting-brightness').value; const contrast = document.getElementById('setting-contrast').value; const saturate = document.getElementById('setting-saturate').value; const blur = document.getElementById('setting-blur').value; const radius = document.getElementById('setting-radius').value; const fontSize = document.getElementById('setting-font-size').value; const lineHeight = document.getElementById('setting-line-height').value; document.getElementById('app-container').style.filter = `brightness(${brightness}) contrast(${contrast}) saturate(${saturate})`; document.documentElement.style.setProperty('--glass-blur', blur + 'px'); document.documentElement.style.setProperty('--radius', radius + 'px'); document.documentElement.style.setProperty('--font-size', fontSize + 'px'); document.documentElement.style.setProperty('--line-height', lineHeight); }
+  async function startAI() { const btn = document.getElementById('start-ai-btn'); btn.disabled = true; btn.innerText = "⏳ 启动中，请等待..."; btn.style.background = "#999"; showToast("正在唤醒AI大脑，请耐心等待！"); try { await fetch('/ai/start', { method: 'POST' }); setTimeout(() => { btn.innerText = "✅ 启动指令已发送"; btn.style.background = "linear-gradient(135deg, #5BCEFA, #4facfe)"; btn.disabled = false; }, 8000); } catch(e) { btn.innerText = "❌ 启动失败"; btn.style.background = "#F5A9B8"; btn.disabled = false; } }
+  function toggleOwnerMode() { if (localStorage.getItem('is_owner') === 'true') { localStorage.removeItem('is_owner'); showToast('已切换为访客模式'); } else { if (prompt('请输入密码以切换为主人模式：') === 'cv658905') { localStorage.setItem('is_owner', 'true'); showToast('已切换为主人模式'); } else { showToast('密码错误！'); } } updateAiModeUI(); }
+  function updateAiModeUI() { document.getElementById('ai-mode-label').innerText = localStorage.getItem('is_owner') === 'true' ? '当前：主人模式' : '当前：访客模式'; }
+  async function initPage() { createPetals(); try { const res = await fetch('/avatar?t=' + Date.now()); if (res.ok) { const blob = await res.blob(); const objUrl = URL.createObjectURL(blob); document.getElementById('home-avatar-img').src = objUrl; } } catch(e) {} loadProfile(); loadMusicList(); loadStats(); updateAiModeUI(); }
+  async function loadStats() { try { const res = await fetch('/stats/get?t=' + Date.now()); const stats = await res.json(); document.getElementById('stat-days').innerText = stats.days || 0; document.getElementById('stat-posts').innerText = stats.posts || 0; document.getElementById('stat-songs').innerText = stats.songs || 0; } catch(e) { console.log("加载统计失败", e); } }
+  async function loadProfile() { try { const res = await fetch('/profile/get'); const profile = await res.json(); document.getElementById('p-name').innerText = profile.nickname || "芊茗静语"; document.getElementById('p-jp').innerText = profile.jp_name || "せんめいせいご"; document.getElementById('p-motto').innerText = '"' + (profile.motto || "我们活着，就是对恶意最大的反抗！") + '"'; document.getElementById('p-details').innerText = `中文名：${profile.cn_name || "卢清茗"} · 现居地：${profile.location || "广西南宁市兴宁区"}`; document.getElementById('p-exp').innerText = profile.exp || "暂无记录..."; document.getElementById('p-hrt').innerText = profile.hrt || "暂无记录..."; document.getElementById('edit-nickname').value = profile.nickname || ""; document.getElementById('edit-cn').value = profile.cn_name || ""; document.getElementById('edit-jp').value = profile.jp_name || ""; document.getElementById('edit-birth').value = profile.birth || ""; document.getElementById('edit-mbti').value = profile.mbti || ""; document.getElementById('edit-location').value = profile.location || ""; document.getElementById('edit-motto').value = profile.motto || ""; document.getElementById('edit-exp').value = profile.exp || ""; document.getElementById('edit-hrt').value = profile.hrt || ""; document.getElementById('edit-bilibili').value = profile.bilibili || ""; document.getElementById('edit-twitter').value = profile.twitter || ""; document.getElementById('edit-google').value = profile.google || ""; document.getElementById('edit-other').value = profile.other || ""; const genderSelect = document.getElementById('edit-gender'); const genderCustom = document.getElementById('edit-gender-custom'); if (['女', '男', '其他'].includes(profile.gender)) { genderSelect.value = profile.gender; if (profile.gender === '其他') { genderCustom.style.display = 'block'; genderCustom.value = profile.gender_custom || ""; } } else { genderSelect.value = '其他'; genderCustom.style.display = 'block'; genderCustom.value = profile.gender || ""; } document.getElementById('social-links').innerHTML = `<a href="${profile.bilibili ? 'https://space.bilibili.com/' + profile.bilibili : '#'}" target="_blank" class="social-item"><div class="icon">📺</div><div class="info"><span>哔哩哔哩</span><span>${profile.bilibili || '未添加'}</span></div></a><a href="${profile.twitter ? 'https://twitter.com/' + profile.twitter : '#'}" target="_blank" class="social-item"><div class="icon">🐦</div><div class="info"><span>Twitter</span><span>${profile.twitter || '未添加'}</span></div></a><a href="mailto:${profile.google || ''}" class="social-item"><div class="icon">📧</div><div class="info"><span>Google</span><span>${profile.google || '未添加'}</span></div></a><div class="social-item"><div class="icon">🔗</div><div class="info"><span>其他</span><span>${profile.other || '未添加'}</span></div></a>`; } catch(e) {} }
+  function toggleCustomGender() { document.getElementById('edit-gender-custom').style.display = (document.getElementById('edit-gender').value === '其他') ? 'block' : 'none'; }
+  function checkPassword() { const pwd = prompt("请输入修改密码："); if(pwd === "cv658905") { return true; } showToast("密码错误！"); return false; }
+  function openProfileModal() { if(checkPassword()) document.getElementById('profile-modal').style.display = 'flex'; }
+  function closeProfileModal() { document.getElementById('profile-modal').style.display = 'none'; }
+  function openAccountsModal() { if(checkPassword()) document.getElementById('accounts-modal').style.display = 'flex'; }
+  function closeAccountsModal() { document.getElementById('accounts-modal').style.display = 'none'; }
+  async function saveProfile() { if (isSaving) return; isSaving = true; const btn = document.getElementById('save-profile-btn'); btn.innerText = "保存中..."; btn.disabled = true; try { const res = await fetch('/profile/get'); const profile = await res.json(); profile.nickname = document.getElementById('edit-nickname').value; profile.cn_name = document.getElementById('edit-cn').value; profile.jp_name = document.getElementById('edit-jp').value; const g = document.getElementById('edit-gender').value; profile.gender = (g === '其他') ? (document.getElementById('edit-gender-custom').value || "其他") : g; profile.gender_custom = document.getElementById('edit-gender-custom').value; profile.birth = document.getElementById('edit-birth').value; profile.mbti = document.getElementById('edit-mbti').value; profile.location = document.getElementById('edit-location').value; profile.motto = document.getElementById('edit-motto').value; profile.exp = document.getElementById('edit-exp').value; profile.hrt = document.getElementById('edit-hrt').value; await fetch('/profile/update', { method: 'POST', body: JSON.stringify(profile) }); showToast('资料保存成功！'); setTimeout(() => location.reload(), 1000); } catch(e) { showToast('保存失败'); btn.innerText = "保存"; btn.disabled = false; isSaving = false; } }
+  async function saveAccounts() { if (isSaving) return; isSaving = true; const btn = document.getElementById('save-accounts-btn'); btn.innerText = "保存中..."; btn.disabled = true; try { const res = await fetch('/profile/get'); const profile = await res.json(); profile.bilibili = document.getElementById('edit-bilibili').value; profile.twitter = document.getElementById('edit-twitter').value; profile.google = document.getElementById('edit-google').value; profile.other = document.getElementById('edit-other').value; await fetch('/profile/update', { method: 'POST', body: JSON.stringify(profile) }); showToast('账号保存成功！'); setTimeout(() => location.reload(), 1000); } catch(e) { showToast('保存失败'); btn.innerText = "保存"; btn.disabled = false; isSaving = false; } }
+  function requestEditAvatar() { if (checkPassword()) { document.getElementById('avatar-input').click(); } }
+  function uploadAvatar(event) { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = async function(e) { document.getElementById('home-avatar-img').src = e.target.result; showToast("上传中..."); try { await fetch('/upload_avatar', { method: 'POST', body: e.target.result }); showToast("上传成功！"); } catch (err) { showToast("上传失败"); } }; reader.readAsDataURL(file); }
+  function togglePlayerCollapse() { const bar = document.getElementById('player-bar'); bar.classList.toggle('collapsed'); document.getElementById('toggle-collapse-btn').innerText = bar.classList.contains('collapsed') ? '➕' : '➖'; }
+  function togglePlaylist() { const modal = document.getElementById('playlist-modal'); modal.classList.toggle('show'); if (modal.classList.contains('show')) renderPlaylist(); }
+  function renderPlaylist() { const container = document.getElementById('playlist-content'); if (currentPlaylist.length === 0) { container.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:20px;">暂无音乐，快去上传吧！</p>'; return; } container.innerHTML = currentPlaylist.map((m, index) => { const isActive = index === currentSongIndex; return `<div class="playlist-item ${isActive ? 'active' : ''}" onclick="playMusicByIndex(${index}); togglePlaylist();"><div style="display: flex; align-items: center; gap: 10px;"><span class="p-index">${index + 1}</span><span class="p-title">${m.name}</span></div><span style="font-size: 0.8rem; color: var(--accent);">▶</span></div>`; }).join(''); }
+  function playPrevious() { if (currentPlaylist.length === 0) return; let prevIndex = currentSongIndex - 1; if (prevIndex < 0) prevIndex = currentPlaylist.length - 1; playMusicByIndex(prevIndex); }
+  function playNext() { if (currentPlaylist.length === 0) return; let nextIndex = currentSongIndex + 1; if (nextIndex >= currentPlaylist.length) nextIndex = 0; playMusicByIndex(nextIndex); }
+  function togglePlayMode() { const btn = document.getElementById('play-mode-btn'); if (playMode === 'list-loop') { playMode = 'single-loop'; btn.innerText = '🔂'; } else if (playMode === 'single-loop') { playMode = 'sequential'; btn.innerText = '➡️'; } else { playMode = 'list-loop'; btn.innerText = '🔁'; } }
+  function playMusicByIndex(index) { if (index < 0 || index >= currentPlaylist.length) return; currentSongIndex = index; const song = currentPlaylist[index]; const audio = document.getElementById('global-audio'); audio.pause(); audio.src = '/music/file/' + encodeURIComponent(song.file); audio.load(); document.getElementById('player-song-name').innerText = song.name; document.getElementById('play-btn').innerText = '⏸'; const bar = document.getElementById('player-bar'); bar.classList.remove('hidden'); bar.classList.remove('collapsed'); document.getElementById('toggle-collapse-btn').innerText = '➖'; audio.play().catch(e => console.log("播放错误:", e)); if (document.getElementById('playlist-modal').classList.contains('show')) renderPlaylist(); }
+  function playMusic(btn) { playMusicByIndex(parseInt(btn.getAttribute('data-index'))); }
+  function handleSongEnd() { if (playMode === 'single-loop') { const audio = document.getElementById('global-audio'); audio.currentTime = 0; audio.play(); } else if (playMode === 'list-loop') { let nextIndex = currentSongIndex + 1; if (nextIndex >= currentPlaylist.length) nextIndex = 0; playMusicByIndex(nextIndex); } else if (playMode === 'sequential') { let nextIndex = currentSongIndex + 1; if (nextIndex < currentPlaylist.length) { playMusicByIndex(nextIndex); } else { document.getElementById('play-btn').innerText = '▶'; currentSongIndex = -1; } } }
+  function togglePlay() { const audio = document.getElementById('global-audio'); if (audio.paused) { audio.play(); document.getElementById('play-btn').innerText = '⏸'; } else { audio.pause(); document.getElementById('play-btn').innerText = '▶'; } }
+  document.getElementById('global-audio').addEventListener('timeupdate', function() { const audio = this; if (audio.duration) { const percent = (audio.currentTime / audio.duration) * 100; document.getElementById('progress-fill').style.width = percent + '%'; document.getElementById('time-display').innerText = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration); } });
+  function seekAudio(event) { const audio = document.getElementById('global-audio'); const rect = event.currentTarget.getBoundingClientRect(); const percent = (event.clientX - rect.left) / rect.width; if (audio.duration) audio.currentTime = percent * audio.duration; }
+  function formatTime(seconds) { const m = Math.floor(seconds / 60); const s = Math.floor(seconds % 60); return m + ':' + (s < 10 ? '0' : '') + s; }
+  async function loadMusicList() { try { const res = await fetch('/music/list?t=' + Date.now()); currentPlaylist = await res.json(); if (currentPlaylist.length === 0) { document.getElementById('music-list').innerHTML = '<p style="color:var(--text-muted); text-align:center; padding:20px;">暂无音乐，快去上传吧！</p>'; } else { document.getElementById('music-list').innerHTML = currentPlaylist.map((m, index) => `<div class="song-item"><strong style="font-size:0.9rem;">🎵 ${m.name}</strong><button onclick="playMusicByIndex(${index})">播放</button></div>`).join(''); } } catch(e) { document.getElementById('music-list').innerHTML = '<p style="color:var(--text-muted); text-align:center;">加载失败</p>'; } }
+  async function uploadMusic(event) { const files = event.target.files; if (!files.length) return; showToast("上传中..."); for (let file of files) { const reader = new FileReader(); reader.onload = async function(e) { await fetch('/music/upload', { method: 'POST', body: JSON.stringify({ name: file.name, data: e.target.result, category: '二次元' }) }); }; reader.readAsDataURL(file); } setTimeout(() => { showToast("上传成功！"); loadMusicList(); }, 2000); }
+  async function sendChat() { if (isSendingChat) return; const i = document.getElementById('user-input'); const m = i.value.trim(); if(!m) return; isSendingChat = true; const btn = document.getElementById('send-btn'); btn.disabled = true; btn.innerText = "思考中..."; const b = document.getElementById('chat-box'); b.innerHTML += `<div class="msg user">${m}</div>`; i.value = ''; b.scrollTop = b.scrollHeight; const d = document.createElement('div'); d.className = 'msg ai'; d.innerText = '正在输入...'; b.appendChild(d); b.scrollTop = b.scrollHeight; try { const res = await fetch('/chat', {method:'POST', body: JSON.stringify({message: m, isOwner: localStorage.getItem('is_owner') === 'true'})}); d.innerText = (await res.json()).reply; } catch(e) { d.innerText = '大脑连接超时'; } b.scrollTop = b.scrollHeight; isSendingChat = false; btn.disabled = false; btn.innerText = "发送"; }
+  async function loadPosts() { const res = await fetch('/forum/get'); const posts = await res.json(); const list = document.getElementById('post-list'); if (!posts || posts.length === 0) { list.innerHTML = '<p style="color:var(--text-muted); text-align:center; padding:10px;">暂无帖子，快来发布第一条吧！</p>'; } else { list.innerHTML = posts.map(p => `<div class="post-item"><small>${p.time}</small><div style="font-size:0.95rem;">${p.content}</div></div>`).join(''); } }
+  async function submitPost() { const c = document.getElementById('post-content').value; if(!c) return; await fetch('/forum/post', {method:'POST', body: JSON.stringify({content: c})}); document.getElementById('post-content').value = ''; loadPosts(); showToast('发布成功！'); }
+</script>
+</body>
+</html>
