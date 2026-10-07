@@ -30,3 +30,12 @@ llama.cpp-master/build/CMakeFiles/
 llama.cpp-master/build/CMakeCache.txt
 llama.cpp-master/build/*.o
 llama.cpp-master/build/*.a
+
+# 忽略各类临时脚本
+add_*.py
+apply_*.py
+hide_*.py
+clean_*.py
+desktop_*.py
+stop_*.py
+*.png.bak
