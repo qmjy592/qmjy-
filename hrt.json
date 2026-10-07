@@ -1,0 +1,479 @@
+{
+  "meta": {
+    "version": 2,
+    "exportedAt": "2026-10-04T22:51:45.848Z"
+  },
+  "weight": 44.16,
+  "events": [
+    {
+      "id": "734ef488-d754-4508-b569-4f21929548b4",
+      "route": "sublingual",
+      "timeH": 497122.8,
+      "doseMG": 1,
+      "ester": "EV",
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTier": 2
+      }
+    },
+    {
+      "id": "82cec71b-07c7-4ecd-8706-dffd2448bbc9",
+      "route": "sublingual",
+      "timeH": 497138.2,
+      "doseMG": 1,
+      "ester": "EV",
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTier": 2
+      }
+    },
+    {
+      "id": "9fec9ed2-20e6-4494-9c79-644ceead5d21",
+      "route": "sublingual",
+      "timeH": 497147.48333333334,
+      "doseMG": 1,
+      "ester": "EV",
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.264
+      }
+    },
+    {
+      "id": "df251f67-a17c-4980-8cf6-3e76d6a8b506",
+      "route": "oral",
+      "timeH": 497147.8333333333,
+      "doseMG": 6.25,
+      "ester": "CPA",
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "f39697d9-244d-4259-bc85-5509cecabc8b",
+      "route": "oral",
+      "timeH": 497138.36666666664,
+      "doseMG": 6.25,
+      "ester": "CPA",
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "9d975502-c92b-44ab-b85d-89329e596217",
+      "route": "oral",
+      "timeH": 497122.9666666667,
+      "doseMG": 6.25,
+      "ester": "CPA",
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "3c69eb2e-e7e7-4e53-b8d7-53dd2c5e33f4",
+      "route": "oral",
+      "timeH": 497149.4166666667,
+      "doseMG": 12.5,
+      "ester": "CPA",
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "869ed3f8-385c-467e-a194-1bbc7ea4b8f3",
+      "route": "sublingual",
+      "timeH": 497161.0833333333,
+      "doseMG": 1,
+      "ester": "EV",
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.264
+      }
+    },
+    {
+      "id": "9d304d57-d278-452c-8fea-57071642754d",
+      "route": "oral",
+      "timeH": 497161.4666666667,
+      "doseMG": 12.5,
+      "ester": "CPA",
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "43562a03-676f-4cd0-9471-3d6565b170e8",
+      "route": "sublingual",
+      "timeH": 497171.98333333334,
+      "doseMG": 1,
+      "ester": "EV",
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.33399999999999996
+      }
+    },
+    {
+      "id": "1cc0cba6-d61b-4e5a-8fc8-26f8b0e94123",
+      "route": "oral",
+      "timeH": 497172.5,
+      "doseMG": 12.5,
+      "ester": "CPA",
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "ba379863-799f-4bb8-8ef1-7cd746ecf400",
+      "route": "sublingual",
+      "timeH": 497184.3333333333,
+      "doseMG": 1,
+      "ester": "EV",
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.33399999999999996
+      }
+    },
+    {
+      "id": "9a879ef3-9fa8-4704-b463-195fabcd413d",
+      "route": "sublingual",
+      "timeH": 497195.18333333335,
+      "doseMG": 1,
+      "ester": "EV",
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTier": 3
+      }
+    },
+    {
+      "id": "912ef9ba-1c86-4a0e-aa46-e07aeeb0d42e",
+      "route": "sublingual",
+      "timeH": 497208.0333333333,
+      "doseMG": 1,
+      "ester": "EV",
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.474
+      }
+    },
+    {
+      "id": "c019b52b-ed56-4b6f-93e2-459cd1502bbf",
+      "route": "oral",
+      "timeH": 497208.68333333335,
+      "doseMG": 12.5,
+      "ester": "CPA",
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "5751cb85-685f-4d8a-b6b1-6a441a8df79e",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497239.23333333334,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.558
+      }
+    },
+    {
+      "id": "6d90101d-5cad-484d-80f4-5870534b14a5",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497240.0333333333,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "247f3dc3-c0ba-4873-b78d-4edaa4683188",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497246.7166666667,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.348
+      }
+    },
+    {
+      "id": "30fb0d1c-b5f9-4b57-9a1d-36be49b2da76",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497259.0833333333,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.586
+      }
+    },
+    {
+      "id": "57b0597e-1947-43c7-b8c8-5febff791ac4",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497268.3,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.278
+      }
+    },
+    {
+      "id": "08374ea6-e185-4444-bff4-e784f7c0d1b1",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497259.81666666665,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "d0fc6f04-b86a-42ce-9338-34d907ef1b09",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497280.0333333333,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTier": 3
+      }
+    },
+    {
+      "id": "4e20c07b-c957-4825-bbf6-fd37d0d77ac2",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497293.26666666666,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.39
+      }
+    },
+    {
+      "id": "510ebeac-b482-4c9f-8db1-95e73eb06325",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497293.81666666665,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "b837f383-aac7-4eaf-83f3-e31ca9a60f0d",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497321.4166666667,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTier": 3
+      }
+    },
+    {
+      "id": "f9296696-67bc-4fe5-9b4b-450d4e6c7a47",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497321.85,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.26
+      }
+    },
+    {
+      "id": "ce2e0931-3c27-438e-a5fb-8de12d31c589",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497322.01666666666,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "1af08676-9765-4931-9875-990d2fa5a1d2",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497345.4166666667,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.26
+      }
+    },
+    {
+      "id": "e9766b4e-1208-435c-9658-d76a875db58f",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497346.56666666665,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "e1bee5a7-b993-4b22-83c8-5411d00be564",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497384.6666666667,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.26
+      }
+    },
+    {
+      "id": "0cf22569-166f-40f7-88ef-3724c6bc48bf",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 496639.6666666667,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.26
+      }
+    },
+    {
+      "id": "49007776-fc00-4b5d-b421-d601c12d267f",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497385.5,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "e2d64e49-6673-4ded-a60c-c5531006d8e1",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497410.85,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.26
+      }
+    },
+    {
+      "id": "aa328c42-3880-48a1-b668-dbe2c7dccd32",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497411.3,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "7b70bb1d-e69e-400a-8891-eb9d7f476e2c",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497433.86666666664,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.26
+      }
+    },
+    {
+      "id": "5aed574d-3e2a-420a-af16-7515dbf6decd",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497434.5,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "ff0c0188-525a-40cc-8dfb-b21ad200600b",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497456.43333333335,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.26
+      }
+    },
+    {
+      "id": "00f50855-db01-45d5-9bdd-080c669c4ae5",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497458.5333333333,
+      "doseMG": 7.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "2c520307-b402-4468-b92b-6ad5f4516997",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497475.5,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTier": 2
+      }
+    },
+    {
+      "id": "cb6edfa0-4075-4086-9da3-148046572957",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497499.8333333333,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.26
+      }
+    },
+    {
+      "id": "7548643c-db8b-47d4-a4cc-160ae18b01a5",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497507.0833333333,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.26
+      }
+    },
+    {
+      "id": "41f741a2-80c9-4cd5-a018-933fcf7a0955",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497508,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "673920b9-0184-4bbd-9e2c-eda43f634281",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497521.11666666664,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.26
+      }
+    },
+    {
+      "id": "82114df0-6866-4a21-881f-c75ae8251843",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497522.06666666665,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    },
+    {
+      "id": "0d52585f-a68f-4ab0-a08b-c7fe66e389ff",
+      "route": "sublingual",
+      "ester": "EV",
+      "timeH": 497532,
+      "doseMG": 1,
+      "weightKG": 44.16,
+      "extras": {
+        "sublingualTheta": 0.266
+      }
+    },
+    {
+      "id": "3e22a699-157b-4be4-847d-ca0797b8f05f",
+      "route": "oral",
+      "ester": "CPA",
+      "timeH": 497533.2,
+      "doseMG": 12.5,
+      "weightKG": 44.16,
+      "extras": {}
+    }
+  ],
+  "labResults": [],
+  "gelProducts": []
+}

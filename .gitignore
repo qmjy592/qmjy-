@@ -1,0 +1,32 @@
+# 1. 虚拟环境（绝对不能传，几千个小文件）
+venv/
+__pycache__/
+*.pyc
+
+# 2. 大模型文件夹（你明确不传）
+models/
+
+# 3. 日志和临时文件
+server.log
+nohup.out
+*.tar.gz
+*.bak
+*.old
+
+# 4. 临时修复脚本（清理这些生成过的工具）
+fix_*.py
+patch_*.py
+safe_css*.py
+restore_auto_expand.py
+ultimate_fix.py
+
+# 5. 系统缓存文件
+.DS_Store
+.vscode/
+.idea/
+
+# 6. 编译中间产物（保留编译好的程序，但不传编译过程产生的大量临时文件，防止仓库过大）
+llama.cpp-master/build/CMakeFiles/
+llama.cpp-master/build/CMakeCache.txt
+llama.cpp-master/build/*.o
+llama.cpp-master/build/*.a

@@ -1,0 +1,1181 @@
+# Copyright (c) 2024 卢清茗. All Rights Reserved. 未经授权禁止修改和分发。
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>✨ 芊茗静语的专属空间 ✨</title>
+<style>
+:root { --bg: linear-gradient(135deg, #5BCEFA 0%, #F5A9B8 35%, #FFF 50%, #F5A9B8 65%, #5BCEFA 100%); --glass: rgba(255,255,255,0.35); --text: #1a1a1a; --muted: #4a5568; --accent: #f5a9b8; --blue: #5bcefa; --border: rgba(255,255,255,0.8); --radius: 24px; }
+body.dark { --bg: linear-gradient(135deg, #2d0a3e 0%, #4a154b 35%, #1a0b2e 50%, #4a154b 65%, #2d0a3e 100%); --glass: rgba(45,20,80,0.6); --text: #f3f4f6; --muted: #d4a5ff; --accent: #c44dff; --blue: #4ecdc4; --border: rgba(212,165,255,0.4); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); background-attachment: fixed; color: var(--text); font-family: -apple-system, "PingFang SC", system-ui, sans-serif; padding-top: 155px; min-height: 100vh; overflow-x: hidden; font-size: 16px; line-height: 1.6; }
+.petal { position: fixed; top: -10px; background: linear-gradient(135deg, #fff, #ffb7c5); border-radius: 50% 0 50% 50%; transform: rotate(45deg); opacity: 0.7; animation: fall linear infinite; z-index: 1; pointer-events: none; }
+@keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
+.glow-orb { position: fixed; border-radius: 50%; filter: blur(40px); opacity: 0.4; z-index: 0; pointer-events: none; animation: float 10s infinite alternate; }
+.orb1 { width: 250px; height: 250px; background: #5BCEFA; top: 5%; left: -10%; }
+.orb2 { width: 300px; height: 300px; background: #F5A9B8; bottom: 10%; right: -10%; animation-delay: -3s; }
+@keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, -30px); } }
+.nav-bar { position: fixed !important; top: 75px !important; left: 0 !important; right: 0 !important; margin: 0 auto !important; width: 95% !important; max-width: 900px !important; border-radius: 30px; padding: 8px 12px; background: var(--glass); border: 1px solid var(--border); z-index: 1000; display: flex; justify-content: space-between; align-items: center; gap: 6px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); overflow: hidden; }
+.nav-scroll { display: flex; flex: 1; overflow-x: auto; scrollbar-width: none; position: relative; padding: 0 4px; align-items: center; gap: 6px; }
+.nav-scroll::-webkit-scrollbar { display: none; }
+.nav-slider { position: absolute; top: 0; left: 4px; height: 100%; background: linear-gradient(135deg, var(--blue), var(--accent)); border-radius: 20px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 0; }
+.nav-bar button { padding: 8px 16px; border-radius: 20px; border: none; background: transparent; color: var(--text); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; white-space: nowrap; position: relative; z-index: 1; flex-shrink: 0; }
+.nav-bar button:hover { background: rgba(255,255,255,0.2); }
+body.dark .nav-bar button:hover { background: rgba(255,255,255,0.05); }
+.nav-bar button.active { color: #fff; font-weight: 600; }
+.nav-bar .settings-btn { border-radius: 50%; width: 38px; height: 38px; padding: 0; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; background: rgba(255,255,255,0.2); border: 1px solid var(--border); flex-shrink: 0; z-index: 2; margin-left: 4px; }
+body.dark .nav-bar .settings-btn { background: rgba(255,255,255,0.05); }
+.container { max-width: 800px; margin: 0 auto; padding: 20px 16px 120px 16px; position: relative; z-index: 10; transition: filter 0.3s; }
+.page { display: none; animation: fadeIn 0.4s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+#topLeftTime { position: fixed !important; top: 20px !important; left: 15px !important; z-index: 10000 !important; padding: 6px 12px; font-size: 13px; font-weight: bold; background: linear-gradient(135deg, #ff9a9e, #fecfef, #ff9a9e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-radius: 12px; border: 1px solid rgba(255,255,255,0.5); white-space: nowrap; }
+body.dark #topLeftTime { background: linear-gradient(135deg, #c44dff, #ff9a9e, #c44dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border: 1px solid rgba(255,255,255,0.1); }
+.profile-card, .section-card, .stat-box { background: var(--glass); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(255,255,255,0.5); transition: all 0.3s; }
+body.dark .profile-card, body.dark .section-card, body.dark .stat-box { box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.1); }
+.profile-card { padding: 30px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.profile-card .avatar { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #5BCEFA, #F5A9B8); padding: 4px; margin-bottom: 20px; cursor: pointer; transition: transform 0.3s; }
+.profile-card .avatar:hover { transform: scale(1.05); }
+.profile-card .avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #fff; }
+.profile-card h1 { font-size: 2rem; font-weight: 800; margin-bottom: 5px; background: linear-gradient(135deg, #5BCEFA, #F5A9B8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.profile-card .subtitle { font-size: 0.9rem; color: var(--muted); margin-bottom: 15px; }
+.profile-card .motto { font-size: 0.95rem; color: var(--muted); font-style: italic; margin-bottom: 15px; }
+.profile-card .info-badge { font-size: 0.8rem; padding: 6px 12px; border-radius: 20px; background: rgba(91, 206, 250, 0.2); color: var(--blue); font-weight: bold; display: inline-block; margin-bottom: 15px; }
+.edit-btn { padding: 10px 24px; border: none; border-radius: 20px; background: linear-gradient(135deg, #5BCEFA, #F5A9B8); color: #fff; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(245, 169, 184, 0.4); transition: 0.3s; }
+.edit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245, 169, 184, 0.6); }
+.stats-grid { display: grid; gap: 10px; margin-bottom: 20px; grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 769px) { .stats-grid { grid-template-columns: repeat(6, 1fr) !important; } }
+@media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+.stat-box { padding: 12px 5px !important; text-align: center; }
+.stat-box .num { font-size: 1.3rem !important; font-weight: 900; color: var(--accent); }
+.stat-box .label { font-size: 0.75rem !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted); margin-top: 5px; font-weight: bold; }
+.section-card { padding: 25px; margin-bottom: 20px; }
+.section-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+.song-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 16px; background: rgba(255,255,255,0.2); margin-bottom: 10px; border: 1px solid var(--border); }
+body.dark .song-item { background: rgba(0,0,0,0.2); }
+.song-item button { padding: 8px 18px; border: none; border-radius: 20px; background: var(--accent); color: #fff; font-weight: bold; cursor: pointer; font-size: 0.85rem; }
+.player-bar { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 600px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 20px; padding: 6px 12px; display: flex; align-items: center; gap: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 1000; border: 1px solid var(--border); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.player-bar.hidden { bottom: -150px; }
+.player-bar.collapsed { width: 55px; padding: 10px; justify-content: center; cursor: pointer; border-radius: 50%; bottom: 30px; left: auto; right: 25px; transform: none; }
+.player-bar.collapsed > *:not(#toggle-collapse-btn) { display: none; }
+.player-bar audio { display: none; }
+.player-bar button { background: var(--glass); border: none; border-radius: 50%; width: 28px; height: 28px; font-size: 12px; cursor: pointer; color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 1px solid var(--border); }
+.player-bar .music-cover { width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, #5BCEFA, #F5A9B8); display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; flex-shrink: 0; }
+.player-bar .song-info { display: flex; flex-direction: column; overflow: hidden; max-width: 90px; }
+.player-bar .song-info span:first-child { font-weight: bold; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.player-bar .song-info span:last-child { font-size: 0.6rem; color: var(--muted); }
+.progress-container { flex: 1; height: 4px; background: rgba(0,0,0,0.1); border-radius: 10px; cursor: pointer; position: relative; overflow: hidden; min-width: 40px; }
+body.dark .progress-container { background: rgba(255,255,255,0.1); }
+.progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #5BCEFA, #F5A9B8); border-radius: 10px; transition: width 0.1s; }
+.time-display { font-size: 0.6rem; color: var(--muted); font-weight: bold; min-width: 55px; text-align: center; }
+#toggle-collapse-btn { background: linear-gradient(135deg, #5BCEFA, #F5A9B8); color: #fff; border: none; box-shadow: 0 4px 10px rgba(245,169,184,0.4); }
+.playlist-modal { position: fixed; bottom: 65px; left: 50%; transform: translateX(-50%) translateY(20px); width: 95%; max-width: 600px; max-height: 50vh; background: var(--glass); backdrop-filter: blur(25px); border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 1001; display: none; flex-direction: column; overflow: hidden; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.playlist-modal.show { display: flex; transform: translateX(-50%) translateY(0); }
+.playlist-header { padding: 12px 18px; border-bottom: 1px solid var(--border); font-weight: bold; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
+.playlist-header button { background: none; border: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; }
+.playlist-content { flex: 1; overflow-y: auto; padding: 10px; }
+.playlist-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-radius: 10px; margin-bottom: 6px; transition: background 0.2s; cursor: pointer; }
+.playlist-item:hover { background: rgba(255,255,255,0.2); }
+body.dark .playlist-item:hover { background: rgba(255,255,255,0.05); }
+.playlist-item.active { background: linear-gradient(135deg, rgba(91,206,250,0.2), rgba(245,169,184,0.2)); border: 1px solid var(--accent); }
+.playlist-item .p-title { font-size: 0.85rem; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.playlist-item .p-index { font-size: 0.75rem; color: var(--muted); width: 20px; text-align: center; flex-shrink: 0; }
+.settings-drawer { position: fixed; top: 0; right: -360px; width: 320px; height: 100%; background: var(--glass); backdrop-filter: blur(20px); z-index: 2000; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 25px; overflow-y: auto; border-left: 1px solid var(--border); }
+.settings-drawer.open { right: 0; }
+.settings-drawer h3 { margin-bottom: 25px; text-align: center; color: var(--accent); font-size: 1.2rem; }
+.setting-group { margin-bottom: 20px; }
+.setting-group label { display: block; margin: 10px 0 6px; font-size: 0.85rem; font-weight: bold; color: var(--muted); }
+.setting-group input[type="range"] { width: 100%; accent-color: var(--accent); }
+.lang-btns { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; }
+.lang-btns button { padding: 6px 12px; border-radius: 12px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; font-size: 0.8rem; }
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 3000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+.modal-content { background: var(--glass); backdrop-filter: blur(20px); padding: 25px; border-radius: var(--radius); width: 90%; max-width: 480px; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid var(--border); }
+.modal-content h3 { text-align: center; margin-bottom: 20px; color: var(--accent); }
+.modal-content label { display: block; margin-bottom: 6px; font-size: 0.85rem; font-weight: bold; color: var(--muted); }
+.modal-btns { display: flex; gap: 10px; margin-top: 20px; }
+.modal-btns button { flex: 1; padding: 12px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; }
+.modal-btns .save { background: linear-gradient(135deg, #5BCEFA, #F5A9B8); color: #fff; }
+.modal-btns .cancel { background: rgba(0,0,0,0.05); color: var(--text); }
+body.dark .modal-btns .cancel { background: rgba(255,255,255,0.1); }
+.toast { position: fixed; top: 80px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #F5A9B8, #d4a5ff); color: #fff; padding: 12px 24px; border-radius: 20px; font-weight: bold; z-index: 9999; display: none; box-shadow: 0 10px 30px rgba(245, 169, 184, 0.4); text-align: center; font-size: 0.9rem; }
+.game-switch { display: flex; gap: 10px; justify-content: center; margin-bottom: 15px; }
+.game-switch button { padding: 8px 20px; border-radius: 15px; border: 1px solid var(--border); background: transparent; color: var(--text); cursor: pointer; font-weight: bold; }
+.game-switch button.active { background: linear-gradient(135deg, var(--blue), var(--accent)); color: #fff; border-color: transparent; }
+.game-box { display: none; flex-direction: column; align-items: center; }
+.game-box.active { display: flex; }
+#gomokuCanvas { background: #d4a373; border-radius: 12px; touch-action: none; max-width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+.game-info-row { display: flex; gap: 15px; margin: 10px 0; font-size: 0.9rem; font-weight: bold; align-items: center; flex-wrap: wrap; justify-content: center; }
+.piece-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+.piece-dot.black { background: radial-gradient(circle at 30% 30%, #666, #000); }
+.piece-dot.white { background: radial-gradient(circle at 30% 30%, #fff, #ccc); }
+.game-btn { padding: 10px 20px; border-radius: 15px; border: none; background: #3498db; color: #fff; font-weight: bold; cursor: pointer; margin: 5px; }
+.game-btn:disabled { background: #999; opacity: 0.5; cursor: not-allowed; }
+#confirm-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 5000; }
+.confirm-card { background: var(--glass); backdrop-filter: blur(20px); padding: 25px; border-radius: 20px; text-align: center; max-width: 300px; border: 1px solid var(--border); }
+#minesweeperBoard { display: grid; gap: 1px; background: #34495e; padding: 4px; border-radius: 6px; margin: 0 auto; }
+.mine-cell { width: 32px; height: 32px; background: #bdc3c7; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; cursor: pointer; user-select: none; }
+.mine-cell.revealed { background: #e2e8f0; cursor: default; }
+.mine-cell.mine { background: #e74c3c; color: #fff; }
+.mine-cell.flag { background: #f1c40f; color: #333; }
+.mine-cell.num1 { color: #3498db; } .mine-cell.num2 { color: #27ae60; } .mine-cell.num3 { color: #e74c3c; }
+.mine-cell.num4 { color: #8e44ad; } .mine-cell.num5 { color: #d35400; } .mine-cell.num6 { color: #16a085; }
+.mine-cell.num7 { color: #2c3e50; } .mine-cell.num8 { color: #7f8c8d; }
+#games .section-card { width: fit-content !important; max-width: calc(100vw - 32px) !important; margin: 0 auto !important; padding: 15px !important; box-sizing: border-box !important; }
+#game-minesweeper .game-info-row { flex-wrap: wrap !important; justify-content: center !important; gap: 8px !important; width: 100% !important; }
+#game-minesweeper > div:last-child { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 8px !important; width: 100% !important; }
+#game-minesweeper > div[style*="overflow-x:auto"] { width: auto !important; max-width: 100% !important; margin: 0 auto !important; }
+#minesweeperBoard { max-width: 100% !important; }
+#minesweeper-difficulty { max-width: 100% !important; flex-shrink: 1 !important; }
+#title-games { justify-content: center; }
+@media (min-width: 769px) { .container { max-width: 1100px; } .profile-card { flex-direction: row; align-items: flex-start; text-align: left; gap: 40px; padding: 40px; } .profile-card .avatar { margin-bottom: 0; width: 150px; height: 150px; } .profile-card .info-wrapper { display: flex; flex-direction: column; flex: 1; } .profile-card h1 { font-size: 2.5rem; } .stats-grid { grid-template-columns: repeat(6, 1fr); } .social-grid { grid-template-columns: repeat(4, 1fr); } .player-bar { max-width: 800px; } .nav-scroll { justify-content: center; } }
+@media (max-width: 600px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } .profile-card h1 { font-size: 1.6rem; } .nav-bar { gap: 4px; padding: 6px 10px; } .nav-bar button { padding: 6px 12px; font-size: 0.85rem; } }
+
+/* 输入框和按钮并排 */
+.chat-input-group {
+    display: flex !important;
+    gap: 10px !important;
+    align-items: center !important;
+    margin-top: 15px;
+}
+.chat-input-group input {
+    flex: 1 !important;
+    padding: 12px 15px !important;
+    border-radius: 25px !important;
+    border: 1px solid var(--border) !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+    color: #333 !important;
+    outline: none !important;
+}
+body.dark .chat-input-group input {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #e0e0e0 !important;
+}
+
+
+/* 聊天记录滚动区 */
+#chat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 400px;
+    overflow-y: auto;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius, 20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    margin-bottom: 15px;
+}
+body.dark #chat-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* 气泡基础样式 */
+.msg {
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    animation: fadeIn 0.3s ease-out;
+}
+.msg.ai {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border-bottom-left-radius: 4px;
+}
+body.dark .msg.ai {
+    background: rgba(255, 255, 255, 0.15);
+    color: #e0e0e0;
+}
+.msg.user {
+    align-self: flex-end;
+    background: var(--accent, #5ba8ff);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* 强制小游戏操作按钮在同一行显示 */
+.game-action-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;   /* 禁止换行 */
+    justify-content: center !important;
+    gap: 6px !important;            /* 按钮间距 */
+    width: 100% !important;
+}
+.game-action-row button {
+    flex: 1 1 0 !important;         /* 让三个按钮均分宽度 */
+    padding: 8px 4px !important;    /* 缩小内边距防止溢出 */
+    font-size: 0.8rem !important;   /* 稍微缩小字号 */
+    white-space: nowrap !important; /* 防止文字换行 */
+    min-width: 0 !important;        /* 允许在极窄屏幕上收缩 */
+}
+
+</style>
+
+<style>
+/* 基础背景和字体 */
+body { background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%) !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important; }
+body.dark { background: linear-gradient(135deg, #1a0b2e 0%, #2d0a3e 100%) !important; }
+
+/* 华丽玻璃卡片（毛玻璃、内发光、立体阴影） */
+.profile-card, .section-card, .stat-box, .game-box, .playlist-modal, .settings-drawer {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1)) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    margin-bottom: 24px !important;
+    padding: 24px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.profile-card:hover, .section-card:hover, .stat-box:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.8) !important;
+}
+body.dark .profile-card, body.dark .section-card, body.dark .stat-box, body.dark .game-box, body.dark .playlist-modal, body.dark .settings-drawer {
+    background: linear-gradient(135deg, rgba(45, 20, 80, 0.7), rgba(45, 20, 80, 0.3)) !important;
+    border: 1px solid rgba(212, 165, 255, 0.4) !important;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 精致按钮 */
+.game-btn, .action-btn, .post-btn, .edit-btn {
+    background: linear-gradient(135deg, #5bcefa, #f5a9b8) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 15px rgba(245, 169, 184, 0.4) !important;
+    font-weight: bold !important;
+    padding: 12px 24px !important;
+    transition: all 0.3s ease !important;
+}
+.game-btn:hover, .action-btn:hover, .post-btn:hover, .edit-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(245, 169, 184, 0.6) !important;
+}
+
+/* 输入框和下拉框 */
+textarea, input[type="text"], input[type="date"], select {
+    background: rgba(255, 255, 255, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+    border-radius: 16px !important;
+    padding: 12px 16px !important;
+    color: inherit !important;
+    outline: none !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    margin-bottom: 12px !important;
+}
+textarea:focus, input[type="text"]:focus { border-color: #f5a9b8 !important; background: rgba(255, 255, 255, 0.5) !important; }
+
+/* 统计数字 */
+.stat-box { padding: 16px 8px !important; text-align: center !important; }
+.stat-box .num { font-size: 1.5rem !important; font-weight: 900 !important; background: linear-gradient(135deg, #5bcefa, #f5a9b8) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; }
+.stat-box .label { font-size: 0.75rem !important; color: var(--muted) !important; margin-top: 8px !important; font-weight: bold !important; }
+
+/* 顶部导航栏美化 */
+.nav-bar {
+    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.3)) !important;
+    backdrop-filter: blur(20px) !important; -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255,255,255,0.8) !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(255,255,255,0.5) !important;
+}
+body.dark .nav-bar {
+    background: linear-gradient(135deg, rgba(45,20,80,0.8), rgba(45,20,80,0.4)) !important;
+    border: 1px solid rgba(212,165,255,0.4) !important;
+}
+
+/* 隐藏非激活页面和弹窗，防止重叠 */
+.page { display: none !important; }
+.page.active { display: block !important; }
+.modal { display: none !important; }
+</style>
+
+
+<style>
+/* 给每一个媒体账号加上独立的玻璃卡片边框 */
+#social-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+.social-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    padding: 15px 20px !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3)) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+.social-item:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5)) !important;
+}
+body.dark .social-item {
+    background: linear-gradient(135deg, rgba(45, 20, 80, 0.6), rgba(45, 20, 80, 0.3)) !important;
+    border: 1px solid rgba(212, 165, 255, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+body.dark .social-item:hover {
+    background: linear-gradient(135deg, rgba(45, 20, 80, 0.8), rgba(45, 20, 80, 0.5)) !important;
+}
+/* 适配电脑端，变为两列 */
+@media (min-width: 769px) {
+    #social-links { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+
+
+<style>
+/* 1. 恢复跨性别旗配色背景（蓝-粉-白-粉-蓝） */
+body {
+    background: linear-gradient(135deg, #5BCEFA 0%, #F5A9B8 35%, #FFFFFF 50%, #F5A9B8 65%, #5BCEFA 100%) !important;
+    background-attachment: fixed !important;
+}
+body.dark {
+    background: linear-gradient(135deg, #2d0a3e 0%, #4a154b 35%, #1a0b2e 50%, #4a154b 65%, #2d0a3e 100%) !important;
+    background-attachment: fixed !important;
+}
+/* 2. 修复媒体账号卡片内容溢出问题 */
+.social-item {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+.social-item .info {
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+}
+.social-item .info span:last-child {
+    display: block !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 100% !important;
+    font-size: 0.85rem !important;
+}
+</style>
+
+
+<style>
+/* 论坛帖子卡片化 */
+#post-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 20px !important;
+}
+.post-item {
+    background: linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3)) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255,255,255,0.8) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    padding: 15px 20px !important;
+    transition: all 0.3s ease !important;
+    text-align: left !important;
+    color: inherit !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+.post-item:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+    background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.5)) !important;
+}
+body.dark .post-item {
+    background: linear-gradient(135deg, rgba(45, 20, 80, 0.6), rgba(45, 20, 80, 0.3)) !important;
+    border: 1px solid rgba(212, 165, 255, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+}
+body.dark .post-item:hover {
+    background: linear-gradient(135deg, rgba(45, 20, 80, 0.8), rgba(45, 20, 80, 0.5)) !important;
+}
+.post-item small {
+    display: block !important;
+    margin-bottom: 8px !important;
+    color: var(--muted) !important;
+    font-size: 0.75rem !important;
+}
+</style>
+
+
+
+
+
+
+
+
+<style>
+/* 单独重置音乐播放器相关字体，恢复精致纤细感 */
+.player-bar, .player-bar *, .song-item, .song-item *, .playlist-item, .playlist-item * {
+    font-weight: normal !important;
+    letter-spacing: 0.2px !important;
+}
+/* 底栏歌名：保持一点点重点，但不能笨重 */
+.player-bar .song-info span:first-child {
+    font-weight: 600 !important;
+    font-size: 0.75rem !important;
+}
+/* 底栏歌手/专辑名：变小变细 */
+.player-bar .song-info span:last-child {
+    font-size: 0.6rem !important;
+    font-weight: normal !important;
+}
+/* 底栏时间显示 */
+.player-bar .time-display {
+    font-size: 0.6rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+}
+/* 歌曲列表（音乐盒页面） */
+.song-item strong {
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+}
+/* 播放列表弹窗 */
+.playlist-item .p-title {
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+}
+.playlist-item .p-index {
+    font-weight: normal !important;
+}
+</style>
+
+
+<style>
+/* 花瓣飘落特效 */
+.petal {
+    position: fixed;
+    top: -10vh;
+    z-index: 99999;
+    pointer-events: none; /* 关键：不干扰任何点击操作 */
+    background: linear-gradient(135deg, #ffb7c5, #ff8fa3);
+    border-radius: 50% 0 50% 50%;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 8px rgba(255, 183, 197, 0.4);
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+}
+</style>
+
+
+<style>
+/* 全局字体轻盈化：与音乐盒字体风格保持一致 */
+body, button, input, textarea, select, h1, h2, h3, h4, span, div, p, a {
+    font-family: "Yuanti SC", "YouYuan", "ZCOOL KuaiLe", "Comic Sans MS", "MiSans", "PingFang SC", sans-serif !important;
+    -webkit-font-smoothing: antialiased !important;
+    text-rendering: optimizeLegibility !important;
+    font-weight: normal !important; /* 取消全局粗体 */
+    letter-spacing: 0.2px !important; /* 和音乐盒一样微弱的字间距 */
+}
+/* 整体文字大小调小一点 */
+body { font-size: 14px !important; }
+/* 标题保留适度分量，但不要太夸张 */
+.profile-card h1 { font-size: 1.8rem !important; font-weight: 600 !important; letter-spacing: 1px !important; }
+.section-card h3 { font-size: 1rem !important; font-weight: 600 !important; }
+/* 统计数字稍微调小 */
+.stat-box .num { font-size: 1.2rem !important; font-weight: 600 !important; }
+.stat-box .label { font-size: 0.7rem !important; }
+/* 帖子、账号、输入框，全部采用细腻的字体 */
+.post-item, .social-item .info span:last-child, textarea, input[type="text"], .song-item strong {
+    font-size: 0.85rem !important;
+    font-weight: normal !important;
+}
+</style>
+
+
+<style>
+/* 桌面端背景：使用你提供的图片 */
+@media (min-width: 769px) {
+    body {
+        background-image: url('bg.png') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
+        background-repeat: no-repeat !important;
+    }
+    /* 桌面端卡片稍微不透明，保证文字在复杂背景上清晰可见 */
+    .profile-card, .section-card, .stat-box, .game-box, .modal-content, .social-item {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+    }
+    body.dark .profile-card, body.dark .section-card, body.dark .stat-box, body.dark .game-box, body.dark .modal-content, body.dark .social-item {
+        background: rgba(30, 15, 50, 0.85) !important;
+    }
+}
+/* 手机端背景：保持跨性别旗渐变 */
+@media (max-width: 768px) {
+    body {
+        background: linear-gradient(135deg, #5BCEFA 0%, #F5A9B8 35%, #FFFFFF 50%, #F5A9B8 65%, #5BCEFA 100%) !important;
+        background-attachment: fixed !important;
+    }
+    body.dark {
+        background: linear-gradient(135deg, #2d0a3e 0%, #4a154b 35%, #1a0b2e 50%, #4a154b 65%, #2d0a3e 100%) !important;
+    }
+}
+</style>
+
+
+
+
+
+
+
+
+<style>
+/* 电脑端排版优化：智能双栏布局 */
+@media (min-width: 769px) {
+    /* 1. 容器宽度适度放宽，避免内容无限拉伸 */
+    .container { max-width: 1100px !important; margin: 0 auto !important; }
+    
+    /* 2. 首页采用 Flex 智能换行布局 */
+    #home.active { 
+        display: flex !important; 
+        flex-wrap: wrap !important; 
+        gap: 24px !important; 
+        justify-content: center !important; 
+    }
+    
+    /* 3. 个人资料卡片、统计网格占据整行 */
+    #home .profile-card { width: 100% !important; }
+    #home .stats-grid { 
+        width: 100% !important; 
+        grid-template-columns: repeat(6, 1fr) !important; 
+        gap: 15px !important; 
+    }
+    
+    /* 4. 个人经历和 HRT 记录在电脑端并排显示（各占一半宽度） */
+    #home .section-card { 
+        width: calc(50% - 12px) !important; 
+        margin-bottom: 0 !important; 
+    }
+    
+    /* 5. 其他页面（论坛、AI、音乐盒、游戏、媒体账号）保持适中的最大宽度 */
+    #forum .section-card, #ai .section-card, #music .section-card, #games .section-card, #accounts .section-card {
+        max-width: 800px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    /* 6. 音乐播放器在桌面端不要太宽 */
+    .player-bar { max-width: 900px !important; }
+    
+    /* 7. 游戏棋盘居中并保持合适的尺寸 */
+    #gomokuCanvas { width: 500px !important; height: 500px !important; margin: 0 auto !important; }
+}
+</style>
+
+
+
+
+
+
+
+
+<style>
+/* 手机端：跨性别旗渐变 */
+@media (max-width: 768px) {
+    body { background: linear-gradient(135deg, #5BCEFA 0%, #F5A9B8 35%, #FFFFFF 50%, #F5A9B8 65%, #5BCEFA 100%) !important; background-attachment: fixed !important; }
+    body.dark { background: linear-gradient(135deg, #2d0a3e 0%, #4a154b 35%, #1a0b2e 50%, #4a154b 65%, #2d0a3e 100%) !important; }
+}
+/* 电脑端：使用你的图片 */
+@media (min-width: 769px) {
+    body { background: url('bg.png') no-repeat center center fixed !important; background-size: cover !important; background-color: #F5A9B8 !important; }
+}
+/* HRT 记录折叠样式 */
+#p-hrt { max-height: 350px !important; overflow-y: auto !important; transition: max-height 0.4s ease !important; }
+#p-hrt.expanded { max-height: none !important; }
+#hrt-more-btn { display: block !important; margin: 15px auto 0 !important; padding: 10px 24px !important; background: linear-gradient(135deg, #5BCEFA, #F5A9B8) !important; color: #fff !important; border: none !important; border-radius: 16px !important; font-weight: bold !important; cursor: pointer !important; width: fit-content !important; box-shadow: 0 4px 15px rgba(245, 169, 184, 0.3) !important; }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<style>
+/* 导航栏重新定义：仿朋友风格 */
+/* --- 手机端：紧凑滚动，保持原有滑动逻辑，但外观更精致 --- */
+@media (max-width: 768px) {
+    .nav-bar {
+        top: 75px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 95% !important;
+        border-radius: 30px !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        border: 1px solid rgba(255, 255, 255, 0.8) !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06) !important;
+        padding: 6px 12px !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+    }
+}
+/* --- 电脑端：居中悬浮胶囊，去掉全宽拉伸 --- */
+@media (min-width: 769px) {
+    .nav-bar {
+        top: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: auto !important;
+        min-width: 650px !important;
+        max-width: 90% !important;
+        border-radius: 40px !important;
+        padding: 10px 24px !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1px solid rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        display: flex !important;
+        justify-content: center !important;
+        gap: 5px !important;
+    }
+    .nav-bar .nav-scroll {
+        justify-content: center !important;
+        flex: none !important;
+        gap: 4px !important;
+    }
+    .nav-bar .settings-btn {
+        margin-left: 15px !important;
+    }
+}
+</style>
+
+
+<style>
+/* 电脑端首页完美排版：完美仿照朋友的“在别处找我”结构 */
+@media (min-width: 769px) {
+    /* 1. 强制个人经历和HRT记录并排（各占半宽，排在前面） */
+    #home .section-card:not(#home-social-container) {
+        flex: 0 0 calc(50% - 12px) !important;
+        width: calc(50% - 12px) !important;
+        max-width: calc(50% - 12px) !important;
+    }
+    
+    /* 2. 强制媒体账号换行，横跨整屏底部（order:10 确保它永远排最后） */
+    #home-social-container {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        order: 10 !important;
+        margin-top: 24px !important;
+    }
+    
+    /* 3. 底部的5个媒体账号卡片整齐排列 */
+    #home-social-container .social-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+        gap: 15px !important;
+    }
+    
+    /* 4. 内部卡片横向排版：图标在左，文字在右 */
+    #home-social-container .social-item {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        padding: 15px 20px !important;
+        gap: 15px !important;
+    }
+    #home-social-container .social-item .icon {
+        font-size: 1.5rem !important;
+    }
+    #home-social-container .social-item .info span:last-child {
+        white-space: nowrap !important; 
+        overflow: hidden !important; 
+        text-overflow: ellipsis !important;
+        font-size: 0.8rem !important;
+    }
+}
+</style>
+
+
+
+
+
+<style>
+/* --- 手机端：保持原样，首页不显示媒体账号 --- */
+@media (max-width: 768px) {
+    #home-social-container { display: none !important; }
+}
+
+/* --- 电脑端：媒体账号展示在首页底部，分三行（2列布局） --- */
+@media (min-width: 769px) {
+    /* 让克隆在首页的媒体账号容器显示出来 */
+    #home-social-container { 
+        display: block !important; 
+        width: 100% !important; 
+        margin-top: 24px !important; 
+    }
+    
+    /* 强制两列布局，这样5个卡片刚好排成三行（2+2+1） */
+    #home-social-container .social-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+    
+    /* 卡片内部样式：保持你截图里那种舒服的横向排版（图标在左，文字在右） */
+    #home-social-container .social-item {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 15px !important;
+        padding: 15px 20px !important;
+        border-radius: 16px !important;
+        background: rgba(255,255,255,0.9) !important;
+        border: 1px solid rgba(0,0,0,0.05) !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
+        box-sizing: border-box !important;
+        text-decoration: none !important;
+        color: inherit !important;
+    }
+    #home-social-container .social-item .info {
+        display: flex !important;
+        flex-direction: column !important;
+        min-width: 0 !important;
+    }
+    #home-social-container .social-item .info span:last-child {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: 0.8rem !important;
+    }
+}
+</style>
+
+
+<style>
+/* 仅在电脑端隐藏导航栏的“媒体账号”按钮 */
+@media (min-width: 769px) {
+    #nav-accounts {
+        display: none !important;
+    }
+}
+</style>
+
+
+<style>
+/* 双端统一的毛玻璃提示气泡 */
+#toast {
+    display: none;
+    position: fixed !important;
+    top: 15% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 99999 !important;
+    padding: 12px 28px !important;
+    border-radius: 30px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 10px 30px rgba(245, 169, 184, 0.3) !important;
+    color: #333 !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    animation: toastSlideDown 0.3s ease !important;
+}
+/* 夜间模式的气泡颜色 */
+body.dark #toast {
+    background: rgba(45, 20, 80, 0.95) !important;
+    border: 1px solid rgba(212, 165, 255, 0.4) !important;
+    color: #f3f4f6 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+/* 气泡弹出动画 */
+@keyframes toastSlideDown {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+</style>
+
+</head>
+<body onload="initPage()">
+<div id="petal-container"></div>
+<div class="glow-orb orb1"></div>
+<div class="glow-orb orb2"></div>
+<div id="topLeftTime">--/-- --:--:--</div>
+<div id="toast"></div>
+<div class="nav-bar" id="nav-bar">
+<div class="nav-scroll" id="nav-scroll">
+<div class="nav-slider" id="nav-slider"></div>
+<button onclick="switchPage('home')" class="active" id="nav-home">首页</button>
+<button onclick="switchPage('forum')" id="nav-forum">小论坛</button>
+<button onclick="switchPage('ai')" id="nav-ai">AI陪伴</button>
+<button onclick="switchPage('music')" id="nav-music">音乐盒</button>
+<button onclick="switchPage('games')" id="nav-games">🎮 小游戏</button>
+<button onclick="switchPage('accounts')" id="nav-accounts">媒体账号</button>
+</div>
+<button class="settings-btn" onclick="toggleSettingsDrawer()">⚙️</button>
+</div>
+<div class="container">
+<div id="home" class="page active">
+<div class="profile-card">
+<input type="file" id="avatar-input" accept="image/*" onchange="uploadAvatar(event)" style="display:none;">
+<div class="avatar" onclick="requestEditAvatar()"><img id="home-avatar-img" src="" alt=""></div>
+<div class="info-wrapper">
+<h1 id="p-name">芊茗静语</h1>
+<div class="subtitle" id="p-jp">せんめいせいご</div>
+<div class="info-badge" id="p-badge">🏳️‍⚧️ 跨性别女性 · INFP · HRT</div>
+<div class="motto" id="p-motto">"我们活着，就是对恶意最大的反抗！"</div>
+<div style="font-size:0.85rem; color:var(--muted); margin-bottom:15px;" id="p-details">中文名：卢清茗 · 现居地：广西南宁市兴宁区</div>
+<button class="edit-btn" onclick="openProfileModal()" id="btn-edit-profile">✏️ 修改个人资料</button>
+</div>
+</div>
+<div class="stats-grid">
+<div class="stat-box"><div class="num" id="stat-days">--</div><div class="label" data-i18n="stat_days">距离出生已经</div></div>
+<div class="stat-box"><div class="num" id="stat-posts">--</div><div class="label" data-i18n="stat_posts">帖子</div></div>
+<div class="stat-box"><div class="num" id="stat-songs">--</div><div class="label" data-i18n="stat_songs">歌曲</div></div>
+<div class="stat-box"><div class="num" id="stat-hrt">--</div><div class="label" data-i18n="stat_hrt">HRT开始已经</div></div>
+<div class="stat-box"><div class="num" id="stat-progynon">--</div><div class="label" data-i18n="stat_progynon">购买补佳乐已经</div></div>
+<div class="stat-box"><div class="num" id="stat-followup">--</div><div class="label" data-i18n="stat_followup">复诊已经</div></div>
+<div class="stat-box"><div class="num" id="stat-diagnosis">--</div><div class="label" data-i18n="stat_diagnosis">首诊诊断已经</div></div>
+<div class="stat-box"><div class="num" id="stat-work">--</div><div class="label" data-i18n="stat_work">工作开始但还没工作已经</div></div>
+<div class="stat-box"><div class="num" id="stat-saving">--</div><div class="label" data-i18n="stat_saving">攒钱开始已经</div></div>
+</div>
+<div class="section-card"><h3 id="title-exp">📜 个人经历</h3><div id="p-exp" style="font-size:0.95rem; color:var(--muted); line-height:1.8;">暂无记录...</div></div>
+<div class="section-card"><h3 id="title-hrt">💊 HRT用药记录</h3><div id="p-hrt" style="font-size:0.95rem; color:var(--muted); line-height:1.8;"></div></div>
+</div>
+<div id="forum" class="page"><div class="section-card"><h3 id="title-forum">💬 小论坛</h3><textarea id="post-content" rows="3" placeholder="写下你此刻的心情..."></textarea><button class="post-btn" onclick="submitPost()" id="btn-submit-post">发布帖子</button><div id="post-list" style="margin-top:20px;"></div></div></div>
+<div id="ai" class="page"><div class="section-card"><h3 id="title-ai">🤖 AI 伴侣</h3><div style="text-align:center; margin-bottom:15px;"><span id="ai-mode-label" style="font-size:0.85rem; font-weight:bold; color:var(--muted);">当前：访客模式</span><button onclick="toggleOwnerMode()" style="margin-left:10px; padding:6px 12px; border:none; border-radius:12px; background:var(--accent); color:#fff; cursor:pointer; font-weight:bold; font-size:0.8rem;" id="btn-owner-switch">👑 主人切换</button></div><div style="text-align:center; margin-bottom:15px;"><button onclick="startAI()" id="start-ai-btn" style="padding:10px 20px; border:none; border-radius:16px; background:linear-gradient(135deg, #5BCEFA, #4facfe); color:#fff; font-weight:bold; cursor:pointer;">🚀 一键启动AI大脑</button></div><div id="chat-box"></div><div class="chat-input-group"><input type="text" id="user-input" placeholder="和静语AI聊聊..." onkeydown="if(event.key==='Enter') sendChat()"><button onclick="sendChat()" id="send-btn" class="action-btn" style="width:auto; padding:0 20px;">发送</button></div></div></div>
+<div id="music" class="page"><div class="section-card"><h3 id="title-music">🎵 静语的音乐盒</h3><div style="text-align:center; margin-bottom:15px;"><input type="file" id="music-upload" accept=".mp3,.m4a,.wav,.ogg" multiple onchange="uploadMusic(event)" style="display:none;"><button onclick="document.getElementById('music-upload').click()" class="action-btn" style="padding:10px 20px; font-size:0.9rem;" id="btn-upload-music">📁 上传本地音乐</button></div><div id="music-list"></div></div></div>
+<div id="games" class="page"><div class="section-card"><h3 id="title-games">🎮 小游戏</h3><div class="game-switch"><button id="switch-gomoku" class="active" onclick="switchGame('gomoku')">五子棋（联机）</button><button id="switch-minesweeper" onclick="switchGame('minesweeper')">扫雷（单机）</button></div><div class="game-box active" id="game-gomoku"><div class="game-info-row"><span>身份：<span id="gomoku-role">获取中...</span></span><span class="piece-dot black" id="gomoku-turn-dot"></span><span id="gomoku-timer">⏱ --</span></div><canvas id="gomokuCanvas" width="400" height="400"></canvas><div class="game-info-row" id="gomoku-status">正在连接服务器...</div><div id="gomoku-match-controls" style="margin-top:10px; display:flex; justify-content:center; gap:10px; width:100%;"><button class="game-btn" id="gomoku-match-btn" onclick="gomokuAction('ready_match')" style="display:none; background:#2ecc71;">✅ 开始游戏</button><button class="game-btn" id="gomoku-play-btn" onclick="gomokuAction('ready_play')" style="display:none; background:#e67e22;">🚀 准备就绪</button></div><div class="game-action-row"><button class="game-btn" id="gomoku-undo" onclick="gomokuAction('undo')">悔棋 (3)</button><button class="game-btn" id="gomoku-draw" onclick="gomokuAction('draw')">求和 (3)</button><button class="game-btn" onclick="gomokuReset()">🔄 重置游戏</button></div></div><div class="game-box" id="game-minesweeper"><div class="game-info-row"><span>💣 剩余：<span id="mine-count">0</span></span><select id="minesweeper-difficulty" onchange="changeDifficulty()" style="width:auto; padding:5px 10px;"><option value="easy">初级 9x9 10雷</option><option value="medium">中级 16x16 40雷</option><option value="hard">高级 16x30 99雷</option><option value="hell">地狱 20x20 120雷</option></select><span id="minesweeper-status">😊 游戏中</span></div><div style="overflow-x:auto; width:100%; padding:5px 0;"><div id="minesweeperBoard" style="display:grid; margin:0 auto;"></div></div><div><button class="game-btn" id="minesweeper-mode" onclick="toggleMineMode()">🚩 切换插旗</button><button class="game-btn" onclick="initMinesweeper()">🔄 重新开始</button></div></div></div><button id="hrt-more-btn" onclick="toggleHrt()">显示更多</button></div>
+<div id="accounts" class="page"><div class="section-card"><h3 id="title-accounts">🔗 我的媒体账号</h3><div id="social-links" class="social-grid"></div><button class="action-btn" style="margin-top:20px;" onclick="openAccountsModal()" id="btn-edit-accounts">✏️ 修改媒体账号</button></div></div>
+</div>
+<div class="player-bar hidden" id="player-bar" onclick="togglePlayerCollapse()">
+<audio id="global-audio" onended="handleSongEnd()"></audio>
+<div class="music-cover">🎵</div>
+<div class="song-info"><span id="player-song-name">未播放</span><span>静语的音乐盒</span></div>
+<button onclick="event.stopPropagation(); playPrevious()" title="上一首">⏮</button>
+<button onclick="event.stopPropagation(); togglePlay()" id="play-btn">▶</button>
+<button onclick="event.stopPropagation(); playNext()" title="下一首">⏭</button>
+<button onclick="event.stopPropagation(); togglePlayMode()" id="play-mode-btn" title="列表循环">🔁</button>
+<div class="progress-container" onclick="event.stopPropagation(); seekAudio(event)"><div class="progress-fill" id="progress-fill"></div></div>
+<div class="time-display" id="time-display">0:00 / 0:00</div>
+<button onclick="event.stopPropagation(); togglePlaylist()" title="播放列表" style="font-size: 14px;">≡</button>
+<button id="toggle-collapse-btn" onclick="event.stopPropagation(); togglePlayerCollapse()">➖</button>
+</div>
+<div class="playlist-modal" id="playlist-modal" onclick="event.stopPropagation()">
+<div class="playlist-header"><span id="playlist-title">本喵的音乐盒，敬请聆听</span><button onclick="togglePlaylist()">✕</button></div>
+<div class="playlist-content" id="playlist-content"></div>
+</div>
+<div class="settings-drawer" id="settings-drawer">
+<h3 id="settings-title">⚙️ 画面设置</h3>
+<div class="lang-btns"><button onclick="changeLanguage('zh')" id="lang-zh">中文</button><button onclick="changeLanguage('en')" id="lang-en">English</button><button onclick="changeLanguage('jp')" id="lang-jp">日本語</button></div>
+<div class="setting-group"><label id="label-brightness">亮度</label><input type="range" id="setting-brightness" min="0.5" max="1.5" step="0.1" value="1" oninput="applySettings()"></div>
+<div class="setting-group"><label id="label-contrast">对比度</label><input type="range" id="setting-contrast" min="0.5" max="1.5" step="0.1" value="1" oninput="applySettings()"></div>
+<div class="setting-group"><label id="label-saturate">饱和度</label><input type="range" id="setting-saturate" min="0" max="2" step="0.1" value="1" oninput="applySettings()"></div>
+<div class="setting-group"><label id="label-blur">磨砂模糊度</label><input type="range" id="setting-blur" min="0" max="40" step="1" value="10" oninput="applySettings()"></div>
+<div class="setting-group"><label id="label-radius">卡片圆角</label><input type="range" id="setting-radius" min="0" max="50" step="1" value="24" oninput="applySettings()"></div>
+<div class="setting-group"><label id="label-font-size">字体大小</label><input type="range" id="setting-font-size" min="12" max="24" step="1" value="16" oninput="applySettings()"></div>
+<div class="setting-group"><label id="label-line-height">字体行高</label><input type="range" id="setting-line-height" min="1.2" max="2.5" step="0.1" value="1.6" oninput="applySettings()"></div>
+<button class="action-btn" style="margin-top:10px;" onclick="toggleDarkMode()" id="btn-dark-mode">切换夜间模式</button>
+<button class="action-btn" style="margin-top:10px; background:rgba(255,255,255,0.2); color:var(--text); box-shadow:none;" onclick="toggleSettingsDrawer()" id="btn-close-settings">关闭设置</button>
+</div>
+<div class="modal" id="profile-modal"><div class="modal-content"><h3 id="modal-title-profile">✏️ 修改个人资料</h3><label id="label-nickname">昵称</label><input type="text" id="edit-nickname"><label id="label-cn">中文名</label><input type="text" id="edit-cn"><label id="label-jp">日文名</label><input type="text" id="edit-jp"><label id="label-gender">性别</label><select id="edit-gender" onchange="toggleCustomGender()"><option value="女">女</option><option value="男">男</option><option value="其他">其他</option></select><input type="text" id="edit-gender-custom" placeholder="自定义性别" style="display:none;"><label id="label-birth">出生年月日</label><input type="date" id="edit-birth"><label id="label-mbti">MBTI</label><input type="text" id="edit-mbti"><label id="label-location">现居地</label><input type="text" id="edit-location"><label id="label-motto">个性签名</label><textarea id="edit-motto" rows="2"></textarea><label id="label-exp">个人经历</label><textarea id="edit-exp" rows="3"></textarea><label id="label-hrt">HRT用药记录</label><textarea id="edit-hrt" rows="3"></textarea><div class="modal-btns"><button class="save" onclick="saveProfile()" id="save-profile-btn">保存</button><button class="cancel" onclick="closeProfileModal()" id="cancel-profile-btn">取消</button></div></div></div>
+<div class="modal" id="accounts-modal"><div class="modal-content"><h3 id="modal-title-accounts">✏️ 修改媒体账号</h3><label id="label-bilibili">哔哩哔哩</label><input type="text" id="edit-bilibili"><label id="label-twitter">Twitter</label><input type="text" id="edit-twitter"><label id="label-google">Google</label><input type="text" id="edit-google"><label id="label-other">其他</label><input type="text" id="edit-other"><div class="modal-btns"><button class="save" onclick="saveAccounts()" id="save-accounts-btn">保存</button><button class="cancel" onclick="closeAccountsModal()" id="cancel-accounts-btn">取消</button></div></div></div>
+<div id="confirm-overlay"><div class="confirm-card"><h3 id="confirm-title">确认操作</h3><p id="confirm-text" style="margin:15px 0;">请确认</p><div style="display:flex;gap:10px;justify-content:center;"><button class="game-btn" style="background:#2ecc71;" onclick="handleConfirm(true)">✅ 同意</button><button class="game-btn" style="background:#e74c3c;" onclick="handleConfirm(false)">❌ 拒绝</button></div></div></div>
+<script>
+const hrtData = [[497122.8,1,"EV","sublingual"],[497138.2,1,"EV","sublingual"],[497147.48333333334,1,"EV","sublingual"],[497147.8333333333,6.25,"CPA","oral"],[497138.36666666664,6.25,"CPA","oral"],[497122.9666666667,6.25,"CPA","oral"],[497149.4166666667,12.5,"CPA","oral"],[497161.0833333333,1,"EV","sublingual"],[497161.4666666667,12.5,"CPA","oral"],[497171.98333333334,1,"EV","sublingual"],[497172.5,12.5,"CPA","oral"],[497184.3333333333,1,"EV","sublingual"],[497195.18333333335,1,"EV","sublingual"],[497208.0333333333,1,"EV","sublingual"],[497208.68333333335,12.5,"CPA","oral"],[497239.23333333334,1,"EV","sublingual"],[497240.0333333333,12.5,"CPA","oral"],[497246.7166666667,1,"EV","sublingual"],[497259.0833333333,1,"EV","sublingual"],[497268.3,1,"EV","sublingual"],[497259.81666666665,12.5,"CPA","oral"],[497280.0333333333,1,"EV","sublingual"],[497293.26666666666,1,"EV","sublingual"],[497293.81666666665,12.5,"CPA","oral"],[497321.4166666667,1,"EV","sublingual"],[497321.85,1,"EV","sublingual"],[497322.01666666666,12.5,"CPA","oral"],[497345.4166666667,1,"EV","sublingual"],[497346.56666666665,12.5,"CPA","oral"],[497384.6666666667,1,"EV","sublingual"],[496639.6666666667,1,"EV","sublingual"],[497385.5,12.5,"CPA","oral"],[497410.85,1,"EV","sublingual"],[497411.3,12.5,"CPA","oral"],[497433.86666666664,1,"EV","sublingual"],[497434.5,12.5,"CPA","oral"],[497456.43333333335,1,"EV","sublingual"],[497458.5333333333,7.5,"CPA","oral"],[497475.5,1,"EV","sublingual"],[497499.8333333333,1,"EV","sublingual"],[497507.0833333333,1,"EV","sublingual"],[497508,12.5,"CPA","oral"],[497521.11666666664,1,"EV","sublingual"],[497522.06666666665,12.5,"CPA","oral"],[497532,1,"EV","sublingual"],[497533.2,12.5,"CPA","oral"]];
+const translations = { zh: { nav_home: "首页", nav_forum: "小论坛", nav_ai: "AI陪伴", nav_music: "音乐盒", nav_games: "🎮 小游戏", nav_accounts: "媒体账号", title_exp: "📜 个人经历", title_hrt: "💊 HRT用药记录", title_forum: "💬 小论坛", title_ai: "🤖 AI 伴侣", title_music: "🎵 静语的音乐盒", title_games: "🎮 小游戏", title_accounts: "🔗 我的媒体账号", btn_edit_profile: "✏️ 修改个人资料", btn_submit_post: "发布帖子", btn_owner_switch: "👑 主人切换", btn_upload_music: "📁 上传本地音乐", btn_edit_accounts: "✏️ 修改媒体账号", btn_dark_mode: "切换夜间模式", btn_close_settings: "关闭设置", placeholder_post: "写下你此刻的心情...", placeholder_chat: "和静语AI聊聊...", placeholder_gender_custom: "自定义性别", send_btn: "发送", start_ai_btn: "🚀 一键启动AI大脑", settings_title: "⚙️ 画面设置", playlist_title: "本喵的音乐盒，敬请聆听", modal_title_profile: "✏️ 修改个人资料", modal_title_accounts: "✏️ 修改媒体账号", save: "保存", cancel: "取消", label_nickname: "昵称", label_cn: "中文名", label_jp: "日文名", label_gender: "性别", label_birth: "出生年月日", label_mbti: "MBTI", label_location: "现居地", label_motto: "个性签名", label_exp: "个人经历", label_hrt: "HRT用药记录", label_bilibili: "哔哩哔哩", label_twitter: "Twitter", label_google: "Google", label_other: "其他", label_brightness: "亮度", label_contrast: "对比度", label_saturate: "饱和度", label_blur: "磨砂模糊度", label_radius: "卡片圆角", label_font_size: "字体大小", label_line_height: "字体行高", ai_guest: "当前：访客模式", ai_owner: "当前：主人模式", stat_days: "距离出生已经", stat_posts: "帖子", stat_songs: "歌曲", stat_hrt: "HRT开始已经", stat_progynon: "购买补佳乐已经", stat_followup: "复诊已经", stat_diagnosis: "首诊诊断已经", stat_work: "工作开始但还没工作已经", stat_saving: "攒钱开始已经" }, en: { nav_home: "Home", nav_forum: "Forum", nav_ai: "AI Chat", nav_music: "Music", nav_games: "🎮 Games", nav_accounts: "Media", title_exp: "📜 Experience", title_hrt: "💊 HRT Record", title_forum: "💬 Forum", title_ai: "🤖 AI Companion", title_music: "🎵 Music Box", title_games: "🎮 Mini Games", title_accounts: "🔗 Media Accounts", btn_edit_profile: "✏️ Edit Profile", btn_submit_post: "Post", btn_owner_switch: "👑 Owner", btn_upload_music: "📁 Upload Music", btn_edit_accounts: "✏️ Edit Accounts", btn_dark_mode: "Toggle Dark", btn_close_settings: "Close", placeholder_post: "Write your mood...", placeholder_chat: "Chat with AI...", placeholder_gender_custom: "Custom Gender", send_btn: "Send", start_ai_btn: "🚀 Start AI", settings_title: "⚙️ Settings", playlist_title: "My Music Box", modal_title_profile: "✏️ Edit Profile", modal_title_accounts: "✏️ Edit Accounts", save: "Save", cancel: "Cancel", label_nickname: "Nickname", label_cn: "Chinese Name", label_jp: "Japanese Name", label_gender: "Gender", label_birth: "Birth Date", label_mbti: "MBTI", label_location: "Location", label_motto: "Motto", label_exp: "Experience", label_hrt: "HRT Record", label_bilibili: "Bilibili", label_twitter: "Twitter", label_google: "Google", label_other: "Other", label_brightness: "Brightness", label_contrast: "Contrast", label_saturate: "Saturation", label_blur: "Blur", label_radius: "Radius", label_font_size: "Font Size", label_line_height: "Line Height", ai_guest: "Guest", ai_owner: "Owner", stat_days: "Days Since Birth", stat_posts: "Posts", stat_songs: "Songs", stat_hrt: "HRT Started", stat_progynon: "Progynon Started", stat_followup: "Follow-up Done", stat_diagnosis: "Diagnosis Done", stat_work: "Work Started (Not Yet)", stat_saving: "Saving Started" }, jp: { nav_home: "ホーム", nav_forum: "フォーラム", nav_ai: "AIチャット", nav_music: "ミュージック", nav_games: "🎮 ゲーム", nav_accounts: "メディア", title_exp: "📜 経験", title_hrt: "💊 HRT記録", title_forum: "💬 フォーラム", title_ai: "🤖 AIパートナー", title_music: "🎵 ミュージック", title_games: "🎮 ミニゲーム", title_accounts: "🔗 メディアアカウント", btn_edit_profile: "✏️ 編集", btn_submit_post: "投稿", btn_owner_switch: "👑 オーナー", btn_upload_music: "📁 アップロード", btn_edit_accounts: "✏️ 編集", btn_dark_mode: "ダークモード", btn_close_settings: "閉じる", placeholder_post: "気持ちを書いて...", placeholder_chat: "AIとチャット...", placeholder_gender_custom: "性別", send_btn: "送信", start_ai_btn: "🚀 AI起動", settings_title: "⚙️ 設定", playlist_title: "マイミュージック", modal_title_profile: "✏️ 編集", modal_title_accounts: "✏️ 編集", save: "保存", cancel: "キャンセル", label_nickname: "ニックネーム", label_cn: "中国名", label_jp: "日本名", label_gender: "性別", label_birth: "生年月日", label_mbti: "MBTI", label_location: "所在地", label_motto: "モットー", label_exp: "経験", label_hrt: "HRT記録", label_bilibili: "ビリビリ", label_twitter: "Twitter", label_google: "Google", label_other: "その他", label_brightness: "明るさ", label_contrast: "コントラスト", label_saturate: "彩度", label_blur: "ぼかし", label_radius: "角", label_font_size: "文字", label_line_height: "行高", ai_guest: "ゲスト", ai_owner: "オーナー", stat_days: "誕生から", stat_posts: "投稿", stat_songs: "曲", stat_hrt: "HRT開始", stat_progynon: "プロギノン開始", stat_followup: "再診完了", stat_diagnosis: "初診診断完了", stat_work: "仕事開始(未就労)", stat_saving: "貯金開始" } };
+let currentPage = 'home', playMode = 'list-loop', currentSongIndex = -1, currentPlaylist = [], isSendingChat = false, isSaving = false, gomokuCanvas, gomokuCtx, gomokuPadding, gomokuGridSize, gomokuMyRole = null, gomokuState = {}, gomokuJoined = false, gomokuLastBoardStr = '', gomokuTimer = null, currentGame = 'gomoku';
+function initPage() { const today = new Date(); today.setHours(0,0,0,0); const calcDays = (str) => Math.floor((today - new Date(str.replace(/-/g, '/'))) / 86400000); document.getElementById('stat-days').innerText = calcDays('2009-10-30'); document.getElementById('stat-hrt').innerText = calcDays('2026-09-17'); document.getElementById('stat-progynon').innerText = calcDays('2026-09-15'); document.getElementById('stat-followup').innerText = calcDays('2026-08-21'); document.getElementById('stat-diagnosis').innerText = calcDays('2026-08-05'); document.getElementById('stat-work').innerText = calcDays('2026-09-14'); document.getElementById('stat-saving').innerText = calcDays('2026-08-29'); fetch('/stats/get?t=' + Date.now()).then(r=>r.json()).then(s=>{ document.getElementById('stat-posts').innerText = s.posts || 0; document.getElementById('stat-songs').innerText = s.songs || 0; }); const baseTime = new Date(1970, 0, 1); const records = hrtData.map(e => ({ time: new Date(baseTime.getTime() + e[0] * 3600000), dose: e[1], ester: e[2], route: e[3] })).filter(e => e.time >= new Date('2026-09-17')).sort((a,b) => b.time - a.time); let html = "<p style='font-size:0.8rem; color:var(--muted); margin-bottom:8px;'>📋 共 " + records.length + " 条真实记录（9月17日起）</p>"; records.forEach(e => { const tStr = (e.time.getMonth()+1).toString().padStart(2,'0') + '-' + e.time.getDate().toString().padStart(2,'0') + ' ' + e.time.getHours().toString().padStart(2,'0') + ':' + e.time.getMinutes().toString().padStart(2,'0'); const es = e.ester === 'EV' ? '雌二醇' : '色普龙'; const r = e.route === 'sublingual' ? '舌下' : '口服'; html += `<div style='display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,0.05);'><span style='color:var(--muted);'>${tStr}</span><span>${es} (${r})</span><span style='color:var(--accent); font-weight:bold;'>${e.dose} mg</span></div>`; }); document.getElementById('p-hrt').innerHTML = html; try { fetch('/avatar?t=' + Date.now()).then(res => { if (res.ok) res.blob().then(blob => document.getElementById('home-avatar-img').src = URL.createObjectURL(blob)); }); } catch(e) {} loadMusicList(); loadProfile(); updateLocalTime(); setInterval(updateLocalTime, 1000); setTimeout(() => moveNavSlider(currentPage), 100); }
+function showToast(msg) { const toast = document.getElementById('toast'); toast.innerText = msg; toast.style.display = 'block'; setTimeout(() => { toast.style.display = 'none'; }, 2500); }
+function updateLocalTime() { const now = new Date(); document.getElementById('topLeftTime').textContent = now.toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' }) + ' ' + now.toLocaleTimeString('zh-CN', { hour12: false }); }
+function moveNavSlider(pageId) { const slider = document.getElementById('nav-slider'), btn = document.getElementById('nav-' + pageId), sc = document.getElementById('nav-scroll'); if (slider && btn && sc) { slider.style.width = btn.offsetWidth + 'px'; slider.style.left = btn.offsetLeft + 'px'; btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); } }
+function switchPage(pageId) {
+    let pingUrl = '/stats/get';
+    if (pageId === 'home') pingUrl = '/profile/get';
+    else if (pageId === 'forum') pingUrl = '/forum/get';
+    else if (pageId === 'ai') pingUrl = '/chat';
+    else if (pageId === 'music') pingUrl = '/music/list';
+    else if (pageId === 'games') pingUrl = '/api/state';
+    else if (pageId === 'accounts') pingUrl = '/profile/get';
+    fetch(pingUrl + '?t=' + Date.now() + '&from=' + pageId).catch(e => {}); document.querySelectorAll('.page').forEach(e => e.classList.remove('active')); document.querySelectorAll('.nav-bar button').forEach(e => e.classList.remove('active')); document.getElementById(pageId).classList.add('active'); document.getElementById('nav-' + pageId).classList.add('active'); currentPage = pageId; setTimeout(() => moveNavSlider(pageId), 10); if (pageId === 'music') loadMusicList(); if (pageId === 'forum') loadPosts();  if (pageId === 'ai') updateAiModeUI(); if (pageId === 'games') { if (!gomokuJoined) joinGomoku(); else if (typeof gomokuTimer === 'undefined' || !gomokuTimer) { gomokuTimer = setInterval(fetchGomokuState, 1000); fetchGomokuState(); } } else { if (typeof gomokuTimer !== 'undefined' && gomokuTimer) { clearInterval(gomokuTimer); gomokuTimer = null; } } }
+function toggleDarkMode() { document.body.classList.toggle('dark'); }
+function toggleSettingsDrawer() { document.getElementById('settings-drawer').classList.toggle('open'); }
+function applySettings() { const b = document.getElementById('setting-brightness').value, c = document.getElementById('setting-contrast').value, s = document.getElementById('setting-saturate').value, bl = document.getElementById('setting-blur').value, r = document.getElementById('setting-radius').value, fs = document.getElementById('setting-font-size').value, lh = document.getElementById('setting-line-height').value; document.querySelector('.container').style.filter = `brightness(${b}) contrast(${c}) saturate(${s})`; document.documentElement.style.setProperty('--glass-blur', bl + 'px'); document.documentElement.style.setProperty('--radius', r + 'px'); document.documentElement.style.setProperty('--font-size', fs + 'px'); document.documentElement.style.setProperty('--line-height', lh); document.querySelectorAll('.section-card, .profile-card, .stat-box').forEach(el => { el.style.backdropFilter = `blur(${bl}px)`; el.style.webkitBackdropFilter = `blur(${bl}px)`; el.style.borderRadius = r + 'px'; }); document.body.style.fontSize = fs + 'px'; document.body.style.lineHeight = lh; }
+function toggleOwnerMode() { if (localStorage.getItem('is_owner') === 'true') { localStorage.removeItem('is_owner'); showToast('已切换为访客模式'); } else { if (prompt('请输入密码：') === 'cv658905') { localStorage.setItem('is_owner', 'true'); showToast('已切换为主人模式'); } else { showToast('密码错误！'); } } updateAiModeUI(); }
+function updateAiModeUI() { const isOwner = localStorage.getItem('is_owner') === 'true'; const t = translations[document.documentElement.lang || 'zh']; document.getElementById('ai-mode-label').innerText = isOwner ? t.ai_owner : t.ai_guest; }
+async function startAI() { const btn = document.getElementById('start-ai-btn'); btn.disabled = true; btn.innerText = "⏳..."; try { await fetch('/ai/start', { method: 'POST' }); setTimeout(() => { btn.innerText = "✅"; btn.disabled = false; }, 3000); } catch(e) { btn.innerText = "❌"; btn.disabled = false; } }
+function changeLanguage(lang) { const t = translations[lang]; document.documentElement.lang = lang; document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (t[key]) el.innerText = t[key]; }); document.getElementById('post-content').placeholder = t.placeholder_post; document.getElementById('user-input').placeholder = t.placeholder_chat; document.getElementById('edit-gender-custom').placeholder = t.placeholder_gender_custom; document.getElementById('send-btn').innerText = t.send_btn; document.getElementById('start-ai-btn').innerText = t.start_ai_btn; document.getElementById('save-profile-btn').innerText = t.save; document.getElementById('cancel-profile-btn').innerText = t.cancel; document.getElementById('save-accounts-btn').innerText = t.save; document.getElementById('cancel-accounts-btn').innerText = t.cancel; updateAiModeUI(); setTimeout(() => { moveNavSlider(currentPage); }, 50); }
+function checkPassword() { if (prompt("请输入修改密码：") === "cv658905") return true; showToast("密码错误！"); return false; }
+function openProfileModal() { if(checkPassword()) document.getElementById('profile-modal').style.display = 'flex'; }
+function closeProfileModal() { document.getElementById('profile-modal').style.display = 'none'; }
+function openAccountsModal() { if(checkPassword()) document.getElementById('accounts-modal').style.display = 'flex'; }
+function closeAccountsModal() { document.getElementById('accounts-modal').style.display = 'none'; }
+function requestEditAvatar() { if (checkPassword()) document.getElementById('avatar-input').click(); }
+function uploadAvatar(event) { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = async function(e) { document.getElementById('home-avatar-img').src = e.target.result; await fetch('/upload_avatar', { method: 'POST', body: e.target.result }); showToast("上传成功！"); }; reader.readAsDataURL(file); }
+async function loadProfile() { try { const p = await (await fetch('/profile/get')).json(); document.getElementById('p-name').innerText = p.nickname || "芊茗静语"; document.getElementById('p-jp').innerText = p.jp_name || "せんめいせいご"; document.getElementById('p-motto').innerText = '"' + (p.motto || "我们活着，就是对恶意最大的反抗！") + '"'; document.getElementById('p-details').innerText = `中文名：${p.cn_name || "卢清茗"} · 现居地：${p.location || "广西南宁市兴宁区"}`; document.getElementById('p-exp').innerText = p.exp || "暂无记录..."; ['nickname','cn','jp','birth','mbti','location','motto','exp','hrt'].forEach(k => { const el = document.getElementById('edit-' + k); if (el) el.value = p[k + '_name'] || p[k] || ""; }); document.getElementById('social-links').innerHTML = `
+            <a href="${p.bilibili ? 'https://space.bilibili.com/' + p.bilibili : '#'}" target="_blank" class="social-item"><div class="icon">&#128250;</div><div class="info"><span>哔哩哔哩</span><span>${p.bilibili || '未添加'}</span></div></a>
+            <a href="${p.twitter ? 'https://twitter.com/' + p.twitter : '#'}" target="_blank" class="social-item"><div class="icon">&#128038;</div><div class="info"><span>Twitter</span><span>${p.twitter || '未添加'}</span></div></a>
+            <a href="mailto:${p.google || ''}" class="social-item"><div class="icon">&#128231;</div><div class="info"><span>Google</span><span>${p.google || '未添加'}</span></div></a>
+            <div class="social-item"><div class="icon">&#128231;</div><div class="info"><span>QQ 邮箱与 QQ 号</span><span>2114006874 / 2114006874@qq.com</span></div></div>
+            <div class="social-item"><div class="icon">&#128241;</div><div class="info"><span>QQ 小号</span><span>2271705989 / 2271705989@qq.com</span></div></div>
+        `; } catch(e) {} }
+async function saveProfile() { const p = await (await fetch('/profile/get')).json(); p.nickname = document.getElementById('edit-nickname').value; p.cn_name = document.getElementById('edit-cn').value; p.jp_name = document.getElementById('edit-jp').value; p.birth = document.getElementById('edit-birth').value; p.mbti = document.getElementById('edit-mbti').value; p.location = document.getElementById('edit-location').value; p.motto = document.getElementById('edit-motto').value; p.exp = document.getElementById('edit-exp').value; p.hrt = document.getElementById('edit-hrt').value; await fetch('/profile/update', { method: 'POST', body: JSON.stringify(p) }); showToast('资料保存成功！'); setTimeout(() => location.reload(), 1000); }
+async function saveAccounts() { const p = await (await fetch('/profile/get')).json(); p.bilibili = document.getElementById('edit-bilibili').value; p.twitter = document.getElementById('edit-twitter').value; p.google = document.getElementById('edit-google').value; p.other = document.getElementById('edit-other').value; await fetch('/profile/update', { method: 'POST', body: JSON.stringify(p) }); showToast('账号保存成功！'); setTimeout(() => location.reload(), 1000); }
+async function loadMusicList() { try { const m = await (await fetch('/music/list?t=' + Date.now())).json(); currentPlaylist = m; if (!m.length) { document.getElementById('music-list').innerHTML = '<p style="color:var(--muted); text-align:center; padding:20px;">暂无音乐</p>'; } else { document.getElementById('music-list').innerHTML = m.map((s, i) => `<div class="song-item"><strong>🎵 ${s.name}</strong><button onclick="playMusicByIndex(${i})">播放</button></div>`).join(''); } } catch(e) {} }
+async function uploadMusic(event) { const files = event.target.files; if (!files.length) return; showToast("上传中..."); for (let f of files) { const r = new FileReader(); r.onload = async function(e) { await fetch('/music/upload', { method: 'POST', body: JSON.stringify({ name: f.name, data: e.target.result, category: '二次元' }) }); }; r.readAsDataURL(f); } setTimeout(() => { showToast("上传成功！"); loadMusicList(); }, 2000); }
+async function submitPost() { const c = document.getElementById('post-content').value; if(!c) return; await fetch('/forum/post', {method:'POST', body: JSON.stringify({content: c})}); document.getElementById('post-content').value = ''; loadPosts(); showToast('发布成功！'); }
+async function loadPosts() { const posts = await (await fetch('/forum/get')).json(); const list = document.getElementById('post-list'); if (!posts || !posts.length) { list.innerHTML = '<p style="color:var(--muted); text-align:center; padding:10px;">暂无帖子</p>'; } else { list.innerHTML = posts.map(p => `<div class="post-item"><small>${p.time}</small><div>${p.content}</div></div>`).join(''); } }
+async function sendChat() {
+    const input = document.getElementById('user-input');
+    const chatBox = document.getElementById('chat-box');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    // 添加用户气泡
+    const userDiv = document.createElement('div');
+    userDiv.className = 'msg user';
+    userDiv.innerText = msg;
+    chatBox.appendChild(userDiv);
+    input.value = '';
+
+    // 添加思考中提示
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'msg ai';
+    loadingDiv.id = 'loading-msg';
+    loadingDiv.innerText = '思考中...';
+    chatBox.appendChild(loadingDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    try {
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: msg })
+        });
+        const data = await response.json();
+        document.getElementById('loading-msg')?.remove();
+        
+        // 添加 AI 气泡
+        const aiDiv = document.createElement('div');
+        aiDiv.className = 'msg ai';
+        aiDiv.innerText = data.reply || "AI没有回复";
+        chatBox.appendChild(aiDiv);
+    } catch (error) {
+        document.getElementById('loading-msg')?.remove();
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'msg ai';
+        errorDiv.innerText = "网络错误或后端未启动";
+        chatBox.appendChild(errorDiv);
+    }
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+function togglePlayerCollapse() { const bar = document.getElementById('player-bar'); bar.classList.toggle('collapsed'); document.getElementById('toggle-collapse-btn').innerText = bar.classList.contains('collapsed') ? '➕' : '➖'; }
+function togglePlaylist() { const m = document.getElementById('playlist-modal'); m.classList.toggle('show'); if (m.classList.contains('show')) renderPlaylist(); }
+function renderPlaylist() { const c = document.getElementById('playlist-content'); if (!currentPlaylist.length) { c.innerHTML = '<p style="text-align:center; color:var(--muted); padding:20px;">暂无音乐</p>'; return; } c.innerHTML = currentPlaylist.map((s, i) => `<div class="playlist-item ${i === currentSongIndex ? 'active' : ''}" onclick="playMusicByIndex(${i}); togglePlaylist();"><div style="display:flex;align-items:center;gap:10px;"><span class="p-index">${i+1}</span><span class="p-title">${s.name}</span></div><span style="color:var(--accent);">▶</span></div>`).join(''); }
+function playMusicByIndex(i) { if (i < 0 || i >= currentPlaylist.length) return; currentSongIndex = i; const s = currentPlaylist[i], a = document.getElementById('global-audio'); a.pause(); a.src = '/music/file/' + encodeURIComponent(s.file); a.load(); document.getElementById('player-song-name').innerText = s.name; document.getElementById('play-btn').innerText = '⏸'; const bar = document.getElementById('player-bar'); bar.classList.remove('hidden'); bar.classList.remove('collapsed'); document.getElementById('toggle-collapse-btn').innerText = '➖'; a.play().catch(e => console.log(e)); if (document.getElementById('playlist-modal').classList.contains('show')) renderPlaylist(); }
+function handleSongEnd() { if (playMode === 'single-loop') { const a = document.getElementById('global-audio'); a.currentTime = 0; a.play(); } else if (playMode === 'list-loop') { let i = currentSongIndex + 1; if (i >= currentPlaylist.length) i = 0; playMusicByIndex(i); } else { let i = currentSongIndex + 1; if (i < currentPlaylist.length) playMusicByIndex(i); else { document.getElementById('play-btn').innerText = '▶'; currentSongIndex = -1; } } }
+function togglePlay() { const a = document.getElementById('global-audio'); if (a.paused) { a.play(); document.getElementById('play-btn').innerText = '⏸'; } else { a.pause(); document.getElementById('play-btn').innerText = '▶'; } }
+document.getElementById('global-audio').addEventListener('timeupdate', function() { const a = this; if (a.duration) { document.getElementById('progress-fill').style.width = (a.currentTime / a.duration) * 100 + '%'; document.getElementById('time-display').innerText = formatTime(a.currentTime) + ' / ' + formatTime(a.duration); } });
+function seekAudio(e) { const a = document.getElementById('global-audio'), r = e.currentTarget.getBoundingClientRect(); if (a.duration) a.currentTime = ((e.clientX - r.left) / r.width) * a.duration; }
+function formatTime(s) { const m = Math.floor(s / 60), sec = Math.floor(s % 60); return m + ':' + (sec < 10 ? '0' : '') + sec; }
+function playPrevious() { if (!currentPlaylist.length) return; let i = currentSongIndex - 1; if (i < 0) i = currentPlaylist.length - 1; playMusicByIndex(i); }
+function playNext() { if (!currentPlaylist.length) return; let i = currentSongIndex + 1; if (i >= currentPlaylist.length) i = 0; playMusicByIndex(i); }
+function togglePlayMode() { const b = document.getElementById('play-mode-btn'); if (playMode === 'list-loop') { playMode = 'single-loop'; b.innerText = '🔂'; } else if (playMode === 'single-loop') { playMode = 'sequential'; b.innerText = '➡️'; } else { playMode = 'list-loop'; b.innerText = '🔁'; } }
+function switchGame(g) { currentGame = g; document.querySelectorAll('.game-box').forEach(e => e.classList.remove('active')); document.querySelectorAll('.game-switch button').forEach(e => e.classList.remove('active')); document.getElementById('game-' + g).classList.add('active'); document.getElementById('switch-' + g).classList.add('active'); if (g === 'gomoku' && !gomokuJoined) joinGomoku(); else if (g === 'minesweeper') initMinesweeper(); }
+function resizeGomokuCanvas() { gomokuCanvas = document.getElementById('gomokuCanvas'); const w = Math.min(window.innerWidth * 0.9, 400); gomokuCanvas.width = w; gomokuCanvas.height = w; gomokuCtx = gomokuCanvas.getContext('2d'); gomokuPadding = w * 0.06; gomokuGridSize = (w - 2 * gomokuPadding) / 14; }
+async function joinGomoku() { if (gomokuJoined) return; gomokuJoined = true; resizeGomokuCanvas(); gomokuCanvas.addEventListener('touchstart', handleGomokuInput); gomokuCanvas.addEventListener('mousedown', handleGomokuInput); try { let cid = localStorage.getItem('gomo_client_id') || Math.random().toString(36).substring(2, 15); localStorage.setItem('gomo_client_id', cid); const d = await (await fetch('/api/join', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ client_id: cid }) })).json(); gomokuMyRole = d.role; const roleName = gomokuMyRole === 'p1' ? '玩家1' : gomokuMyRole === 'p2' ? '玩家2' : '观战者'; document.getElementById('gomoku-role').innerText = roleName; if (gomokuMyRole === 'spectator') { document.getElementById('gomoku-undo').style.display = 'none'; document.getElementById('gomoku-draw').style.display = 'none'; } setInterval(fetchGomokuState, 1000); fetchGomokuState(); } catch(e) { document.getElementById('gomoku-status').innerText = '连接失败，请刷新'; } }
+function gomokuReset() { if (confirm('确定要重置游戏吗？')) { fetch('/api/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({action: 'reset'}) }).then(() => showToast('游戏已重置，请重新开始！')); } }
+function fetchGomokuState() { if (typeof currentPage !== 'undefined' && currentPage !== 'games') return; fetch('/api/state').then(r=>r.json()).then(s => { gomokuState = s; updateGomokuUI(s); }).catch(e=>{}); }
+function updateGomokuUI(s) { const bs = JSON.stringify(s.board); if (bs !== gomokuLastBoardStr) { drawGomokuBoard(s.board); gomokuLastBoardStr = bs; } document.getElementById('gomoku-status').innerText = s.last_action_msg || '对弈中...'; const dot = document.getElementById('gomoku-turn-dot'); if (s.status === 'playing') { dot.className = 'piece-dot ' + (s.current_player === 1 ? 'black' : 'white'); document.getElementById('gomoku-timer').innerText = '⏱ ' + s.time_left + 's'; } else { document.getElementById('gomoku-timer').innerText = '⏱ --'; } document.getElementById('gomoku-match-btn').style.display = 'none'; document.getElementById('gomoku-play-btn').style.display = 'none'; if (gomokuMyRole !== 'spectator') { const assignedRole = s.roles ? s.roles[gomokuMyRole] : null; if (assignedRole) document.getElementById('gomoku-role').innerText = assignedRole === 'black' ? '黑棋' : '白棋'; const myTurn = (assignedRole === 'black' && s.current_player === 1) || (assignedRole === 'white' && s.current_player === 2); const u = document.getElementById('gomoku-undo'), d = document.getElementById('gomoku-draw'); if (assignedRole) { u.innerText = '悔棋 (' + (s.undo_left[assignedRole] || 0) + ')'; d.innerText = '求和 (' + (s.draw_left[assignedRole] || 0) + ')'; } u.disabled = !myTurn || s.status !== 'playing' || s.undo_left[assignedRole] <= 0 || s.pending_action !== null; d.disabled = !myTurn || s.status !== 'playing' || s.draw_left[assignedRole] <= 0 || s.pending_action !== null; if (s.status === 'ready_match') document.getElementById('gomoku-match-btn').style.display = 'inline-block'; else if (s.status === 'ready_play') document.getElementById('gomoku-play-btn').style.display = 'inline-block'; } if (s.pending_action && s.requester !== (gomokuMyRole === 'p1' ? 'black' : 'white') && gomokuMyRole !== 'spectator') { document.getElementById('confirm-title').innerText = s.pending_action === 'undo' ? '⚠️ 对方请求悔棋' : '🤝 对方请求和棋'; document.getElementById('confirm-overlay').style.display = 'flex'; } else { document.getElementById('confirm-overlay').style.display = 'none'; } }
+function drawGomokuBoard(board) { if (!gomokuCtx) return; const c = gomokuCanvas; gomokuCtx.clearRect(0, 0, c.width, c.height); const g = gomokuCtx.createLinearGradient(0, 0, c.width, c.height); g.addColorStop(0, '#e0b184'); g.addColorStop(1, '#c28b5e'); gomokuCtx.fillStyle = g; gomokuCtx.fillRect(0, 0, c.width, c.height); gomokuCtx.strokeStyle = 'rgba(62,39,35,0.4)'; gomokuCtx.lineWidth = 1; for (let i = 0; i < 15; i++) { let p = gomokuPadding + i * gomokuGridSize; gomokuCtx.beginPath(); gomokuCtx.moveTo(gomokuPadding, p); gomokuCtx.lineTo(c.width - gomokuPadding, p); gomokuCtx.stroke(); gomokuCtx.beginPath(); gomokuCtx.moveTo(p, gomokuPadding); gomokuCtx.lineTo(p, c.height - gomokuPadding); gomokuCtx.stroke(); } [[3,3],[11,3],[3,11],[11,11],[7,7]].forEach(([x,y]) => { const px = gomokuPadding + x*gomokuGridSize, py = gomokuPadding + y*gomokuGridSize; gomokuCtx.beginPath(); gomokuCtx.arc(px, py, 4, 0, Math.PI*2); gomokuCtx.fillStyle = 'rgba(62,39,35,0.6)'; gomokuCtx.fill(); }); if (board) { for (let y = 0; y < 15; y++) for (let x = 0; x < 15; x++) if (board[y][x] !== 0) drawGomokuPiece(x, y, board[y][x]); } }
+function drawGomokuPiece(x, y, p) { const px = gomokuPadding + x*gomokuGridSize, py = gomokuPadding + y*gomokuGridSize, r = gomokuGridSize * 0.42; gomokuCtx.beginPath(); gomokuCtx.arc(px, py, r, 0, Math.PI*2); const isB = p === 1; const g = gomokuCtx.createRadialGradient(px - r*0.4, py - r*0.4, r*0.1, px, py, r*1.2); if (isB) { g.addColorStop(0, '#666'); g.addColorStop(0.5, '#111'); g.addColorStop(1, '#000'); } else { g.addColorStop(0, '#fff'); g.addColorStop(0.6, '#e6e6e6'); g.addColorStop(1, '#aaa'); } gomokuCtx.fillStyle = g; gomokuCtx.fill(); }
+function handleGomokuInput(e) { e.preventDefault(); const role = gomokuState.roles ? gomokuState.roles[gomokuMyRole] : null; if (gomokuMyRole === 'spectator' || gomokuState.status !== 'playing' || gomokuState.pending_action !== null) return; let cx, cy; if (e.touches && e.touches.length > 0) { cx = e.touches[0].clientX; cy = e.touches[0].clientY; } else { cx = e.clientX; cy = e.clientY; } const r = gomokuCanvas.getBoundingClientRect(), sx = gomokuCanvas.width / r.width, sy = gomokuCanvas.height / r.height; const gx = Math.round(((cx - r.left) * sx - gomokuPadding) / gomokuGridSize), gy = Math.round(((cy - r.top) * sy - gomokuPadding) / gomokuGridSize); if (gx < 0 || gx >= 15 || gy < 0 || gy >= 15) return; const tx = gomokuPadding + gx * gomokuGridSize, ty = gomokuPadding + gy * gomokuGridSize; if (Math.sqrt(Math.pow((cx - r.left)*sx - tx, 2) + Math.pow((cy - r.top)*sy - ty, 2)) > gomokuGridSize * 0.5) return; if (gomokuState.board[gy][gx] !== 0) return; const myTurn = (role === 'black' && gomokuState.current_player === 1) || (role === 'white' && gomokuState.current_player === 2); if (!myTurn) return; fetch('/api/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ role: gomokuMyRole, action: 'place', x: gx, y: gy }) }); }
+function gomokuAction(action) { if (gomokuMyRole === 'spectator') return; fetch('/api/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ role: gomokuMyRole, action }) }).then(res=>res.json()).then(data => { if (data.error) showToast(data.error); fetchGomokuState(); }); }
+function handleConfirm(agree) { document.getElementById('confirm-overlay').style.display = 'none'; fetch('/api/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ role: gomokuMyRole, action: agree ? 'agree' : 'reject' }) }).then(res=>res.json()).then(data => { if (data.error) showToast(data.error); fetchGomokuState(); }); }
+const MS_DIFF = { easy: { rows: 9, cols: 9, mines: 10 }, medium: { rows: 16, cols: 16, mines: 40 }, hard: { rows: 16, cols: 30, mines: 99 }, hell: { rows: 20, cols: 20, mines: 120 } };
+let msConfig = MS_DIFF.easy, msBoard = [], msRevealedCount = 0, msGameOver = false, msFlagMode = false, msMineLeft = 0, msCurrentDiff = 'easy', msTouchTimer = null, msIsLongPress = false;
+function changeDifficulty() { msCurrentDiff = document.getElementById('minesweeper-difficulty').value; msConfig = MS_DIFF[msCurrentDiff]; initMinesweeper(); }
+function initMinesweeper(sx, sy) { msConfig = MS_DIFF[msCurrentDiff]; msBoard = []; msRevealedCount = 0; msGameOver = false; msMineLeft = msConfig.mines; document.getElementById('minesweeper-status').innerText = '😊 游戏中'; document.getElementById('mine-count').innerText = msMineLeft; const boardEl = document.getElementById('minesweeperBoard'); boardEl.innerHTML = ''; boardEl.style.gridTemplateColumns = `repeat(${msConfig.cols}, 32px)`; for (let y = 0; y < msConfig.rows; y++) { let row = []; for (let x = 0; x < msConfig.cols; x++) { row.push({ x, y, isMine: false, isRevealed: false, isFlag: false, neighborMines: 0 }); } msBoard.push(row); } let placed = 0; while (placed < msConfig.mines) { const x = Math.floor(Math.random()*msConfig.cols), y = Math.floor(Math.random()*msConfig.rows); if (!msBoard[y][x].isMine && !(x === sx && y === sy)) { msBoard[y][x].isMine = true; placed++; } } for (let y = 0; y < msConfig.rows; y++) for (let x = 0; x < msConfig.cols; x++) { if (msBoard[y][x].isMine) continue; let c = 0; for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) { const ny = y + dy, nx = x + dx; if (ny >= 0 && ny < msConfig.rows && nx >= 0 && nx < msConfig.cols && msBoard[ny][nx].isMine) c++; } msBoard[y][x].neighborMines = c; } renderMinesweeper(); }
+function renderMinesweeper() { const boardEl = document.getElementById('minesweeperBoard'); boardEl.innerHTML = ''; for (let y = 0; y < msConfig.rows; y++) for (let x = 0; x < msConfig.cols; x++) { const div = document.createElement('div'); div.className = 'mine-cell'; div.dataset.x = x; div.dataset.y = y; div.addEventListener('touchstart', () => { msIsLongPress = false; msTouchTimer = setTimeout(() => { msIsLongPress = true; handleRightClick(x, y); }, 400); }); div.addEventListener('touchend', () => { clearTimeout(msTouchTimer); if (!msIsLongPress) handleLeftClick(x, y); }); div.addEventListener('mousedown', (e) => { if (e.button === 0) { msIsLongPress = false; msTouchTimer = setTimeout(() => { msIsLongPress = true; handleRightClick(x, y); }, 400); } }); div.addEventListener('mouseup', (e) => { if (e.button === 0) { clearTimeout(msTouchTimer); if (!msIsLongPress) handleLeftClick(x, y); } else if (e.button === 2) { e.preventDefault(); handleRightClick(x, y); } }); div.addEventListener('contextmenu', e => e.preventDefault()); boardEl.appendChild(div); } for (let y = 0; y < msConfig.rows; y++) for (let x = 0; x < msConfig.cols; x++) updateMineCell(x, y); }
+function handleLeftClick(x, y) { if (msGameOver) return; if (msRevealedCount === 0 && msBoard[y][x].isMine) { initMinesweeper(x, y); return; } const c = msBoard[y][x]; if (c.isRevealed) { if (c.neighborMines > 0) chord(x, y); return; } if (msFlagMode) { handleRightClick(x, y); return; } if (c.isFlag) return; if (c.isMine) { msGameOver = true; gameOverMine(false); return; } revealCell(x, y); checkMineWin(); }
+function handleRightClick(x, y) { if (msGameOver) return; const c = msBoard[y][x]; if (c.isRevealed) return; if (!c.isFlag) { c.isFlag = true; msMineLeft--; } else { c.isFlag = false; msMineLeft++; } document.getElementById('mine-count').innerText = msMineLeft; updateMineCell(x, y); }
+function chord(x, y) { const c = msBoard[y][x]; let fc = 0, ns = []; for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) { const ny = y + dy, nx = x + dx; if (ny >= 0 && ny < msConfig.rows && nx >= 0 && nx < msConfig.cols) { if (msBoard[ny][nx].isFlag) fc++; if (!msBoard[ny][nx].isRevealed && !msBoard[ny][nx].isFlag) ns.push({ x: nx, y: ny }); } } if (fc === c.neighborMines) { ns.forEach(n => { if (msBoard[n.y][n.x].isMine) gameOverMine(false); else revealCell(n.x, n.y); }); checkMineWin(); } }
+function revealCell(x, y) {
+    if (x < 0 || x >= msConfig.cols || y < 0 || y >= msConfig.rows) return;
+    const c = msBoard[y][x];
+    if (c.isRevealed || c.isFlag || c.isMine) return;
+    
+    // 1. 揭示当前格子
+    c.isRevealed = true;
+    msRevealedCount++;
+    updateMineCell(x, y);
+    
+    // 2. 如果周围没有雷（空白格），则自动展开周围格子
+    if (c.neighborMines === 0) {
+        for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
+                if (!(dx === 0 && dy === 0)) {
+                    revealCell(x + dx, y + dy);
+                }
+            }
+        }
+    }
+}
+function updateMineCell(x, y) { const c = msBoard[y][x], div = document.querySelector(`.mine-cell[data-x="${x}"][data-y="${y}"]`); if (!div) return; div.className = 'mine-cell'; div.innerText = ''; if (c.isRevealed) { div.classList.add('revealed'); if (c.isMine) { div.classList.add('mine'); div.innerText = '💣'; } else if (c.neighborMines > 0) { div.innerText = c.neighborMines; div.classList.add('num' + c.neighborMines); } } else if (c.isFlag) { div.classList.add('flag'); div.innerText = '🚩'; } }
+function gameOverMine(isWin) { msGameOver = true; document.getElementById('minesweeper-status').innerText = isWin ? '🎉 胜利！' : '💥 踩雷'; for (let y = 0; y < msConfig.rows; y++) for (let x = 0; x < msConfig.cols; x++) if (msBoard[y][x].isMine && !msBoard[y][x].isFlag) { msBoard[y][x].isRevealed = true; const div = document.querySelector(`.mine-cell[data-x="${x}"][data-y="${y}"]`); if (div) { div.classList.add('mine'); div.innerText = '💣'; } } }
+function checkMineWin() { if (msGameOver) return; if (msRevealedCount === msConfig.rows * msConfig.cols - msConfig.mines) gameOverMine(true); }
+function toggleMineMode() { msFlagMode = !msFlagMode; const btn = document.getElementById('minesweeper-mode'); if (msFlagMode) { btn.classList.add('active'); btn.innerText = '⛏ 切换挖雷'; } else { btn.classList.remove('active'); btn.innerText = '🚩 切换插旗'; } }
+
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        // 切到后台，立刻停止轮询
+        if (typeof gomokuTimer !== 'undefined' && gomokuTimer) { clearInterval(gomokuTimer); gomokuTimer = null; }
+    } else {
+        // 切回前台，如果还在游戏页面，重新启动轮询
+        if (typeof currentPage !== 'undefined' && currentPage === 'games') {
+            if (typeof gomokuTimer === 'undefined' || !gomokuTimer) {
+                gomokuTimer = setInterval(fetchGomokuState, 1000);
+                fetchGomokuState();
+            }
+        }
+    }
+});
+
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const petalCount = 10; // 花瓣数量，控制为10片以保证手机流畅
+    for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        const size = Math.random() * 12 + 8; // 花瓣大小 8px - 20px
+        petal.style.width = size + 'px';
+        petal.style.height = size + 'px';
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = (Math.random() * 5 + 6) + 's'; // 持续 6-11 秒
+        petal.style.animationDelay = Math.random() * 5 + 's'; // 错落有致地出现
+        document.body.appendChild(petal);
+    }
+});
+
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        // 切到后台，立刻停止轮询
+        if (typeof gomokuTimer !== 'undefined' && gomokuTimer) { clearInterval(gomokuTimer); gomokuTimer = null; }
+    } else {
+        // 切回前台，如果还在游戏页面，重新启动轮询
+        if (typeof currentPage !== 'undefined' && currentPage === 'games') {
+            if (typeof gomokuTimer === 'undefined' || !gomokuTimer) {
+                gomokuTimer = setInterval(fetchGomokuState, 1000);
+                fetchGomokuState();
+            }
+        }
+    }
+});
+
+</script>
+
+
+<script>
+function toggleHrt() {
+    const el = document.getElementById('p-hrt');
+    const btn = document.getElementById('hrt-more-btn');
+    if (el.classList.contains('expanded')) {
+        el.classList.remove('expanded');
+        btn.innerText = '显示更多';
+    } else {
+        el.classList.add('expanded');
+        btn.innerText = '收起';
+    }
+}
+
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        // 切到后台，立刻停止轮询
+        if (typeof gomokuTimer !== 'undefined' && gomokuTimer) { clearInterval(gomokuTimer); gomokuTimer = null; }
+    } else {
+        // 切回前台，如果还在游戏页面，重新启动轮询
+        if (typeof currentPage !== 'undefined' && currentPage === 'games') {
+            if (typeof gomokuTimer === 'undefined' || !gomokuTimer) {
+                gomokuTimer = setInterval(fetchGomokuState, 1000);
+                fetchGomokuState();
+            }
+        }
+    }
+});
+
+</script>
+
+
+<script>
+function cloneMediaToHome() {
+    const home = document.getElementById('home');
+    const socialGrid = document.getElementById('social-links');
+    if (!home || !socialGrid) return;
+    if (document.getElementById('home-social-container')) return;
+    const newCard = document.createElement('div');
+    newCard.id = 'home-social-container';
+    newCard.className = 'section-card';
+    newCard.innerHTML = '<h3>&#128279; 我的媒体账号</h3><div class="social-grid" id="home-social-grid"></div>';
+    const clonedGrid = socialGrid.cloneNode(true);
+    clonedGrid.id = 'home-social-grid-cloned';
+    newCard.querySelector('#home-social-grid').replaceWith(clonedGrid);
+    const targetCard = Array.from(home.querySelectorAll('.section-card')).find(c => c.querySelector('#title-hrt') || c.querySelector('#title-exp'));
+    if (targetCard) {
+        targetCard.parentNode.insertBefore(newCard, targetCard.nextSibling);
+    } else {
+        home.appendChild(newCard);
+    }
+}
+window.addEventListener('load', () => setTimeout(cloneMediaToHome, 800));
+
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        // 切到后台，立刻停止轮询
+        if (typeof gomokuTimer !== 'undefined' && gomokuTimer) { clearInterval(gomokuTimer); gomokuTimer = null; }
+    } else {
+        // 切回前台，如果还在游戏页面，重新启动轮询
+        if (typeof currentPage !== 'undefined' && currentPage === 'games') {
+            if (typeof gomokuTimer === 'undefined' || !gomokuTimer) {
+                gomokuTimer = setInterval(fetchGomokuState, 1000);
+                fetchGomokuState();
+            }
+        }
+    }
+});
+
+</script>
+
+</body>
+</html>
